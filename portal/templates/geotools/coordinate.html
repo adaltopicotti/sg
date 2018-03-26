@@ -1,0 +1,124 @@
+{% extends "website/structure/base.html" %}
+
+{% block content %}
+
+
+<div class="row justify-content-center">
+	<div class="col-md-6">
+		<div class="card mb-3">
+			<div class="card-header">Consulta de Coordenadas</div>
+			<div class="card-body">
+				<!-- Coordinate Form -->
+				<form method="POST" name="coordForm" class="post-form">{% csrf_token %}
+					<div class="row justify-content-center">
+						<div class="col-md-8">
+							<table class="table">
+								<thead>
+									<tr>
+										<th></th>
+										<th><abbr title="Played">Deg (º)</abbr></th>
+										<th><abbr title="Played">Min (')</abbr></th>
+										<th><abbr title="Played">Sec (")</abbr></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><p><strong>Latitude</strong></p></td>
+										<td>{{form.lat_deg}}</td>
+										<td>{{form.lat_min}}</td>
+										<td>{{form.lat_sec}}</td>
+									</tr>
+									<tr>
+										<td><p><strong>Longitude</strong></p></td>
+										<td>{{form.lon_deg}}</td>
+										<td>{{form.lon_min}}</td>
+										<td>{{form.lon_sec}}</td>
+									</tr>
+								</tbody>
+							</table>
+							<p class="help is-danger">{{r}}</p>
+							<p class="control">
+								<button type="submit" class="btn btn-secondary btn-block">Consultar</button>
+							</p>
+						</div>
+					</div>
+				</form>
+				<!-- End of Coordinate Form -->
+				<!-- START RESULT SPACE -->
+				<div class="row justify-content-center">
+					<div class="col-md-12">
+						<table class="table is-bordered">
+							<thead>
+							</thead>
+							{% if err %}
+							<div class="alert alert-danger" role="alert">
+							  {{err}}
+							</div>
+							{% endif %}
+							{% if geoInfo %}
+							<tbody>
+								<tr>
+									<td><a>Coordenadas</a></td>
+									<td>{{coord}}</td>
+								</tr>
+								<tr>
+									<td><a>Latitude</a></td>
+									<td>{{lat}}</td>
+								</tr>
+								<tr>
+									<td><a>Longitude</a></td>
+									<td>{{lon}}</td>
+								</tr>
+								<tr>
+									<td><a>Localidade</a></td>
+									<td><a href="https://www.google.com.br/maps/@{{lat}},{{lon}},2051m/data=!3m1!1e3?hl=pt-BR">{{geoInfo}}</a></td>
+								</tr>
+								<!--<tr>
+									<td><a>Consulta em</a></td>
+									<td>{{weather.today}}</td>
+								</tr>
+								<tr>
+									<td><a>Clima</a></td>
+									<td>
+									</td>
+								</tr>-->
+							</tbody>
+							{% endif %}
+						</table>
+				</div>
+			</div>
+			<!-- END RESULT SPACE -->
+		</div>
+	</div>
+</div>
+
+
+<div class="row justify-content-center">
+	<div class="col-md-6 col-md-auto" name="adsense">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<ins class="adsbygoogle"
+		style="display:block"
+		data-ad-client="ca-pub-4456878218517382"
+		data-ad-slot="5634157566"
+		data-ad-format="auto"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+		<br>
+	</div>
+	<div class="col-md-8">
+		<div class="card">
+			<div class="card-header"> O que é Coordenada Geográfica?</div>
+			<div class="card-body">
+				{{coordInfo}}
+				<h6>{{latInfo}}</h6>
+				<h6>{{lonInfo}}</h6>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+
+
+{% endblock %}

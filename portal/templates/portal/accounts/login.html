@@ -1,0 +1,46 @@
+{% extends 'portal/structure/base.html' %}
+
+{% block content %}
+
+  <div class="row justify-content-center">
+    <div class="card bg-light mb-4">
+      <div class="card-header">
+        Para utilizar algumas de nossas aplicações, é necessário realizar o login.
+      </div>
+      <div class="card-body">
+
+        <div class="row justify-content-center">
+          {% if form.errors %}
+          <div class="alert alert-danger" role="alert">
+            Your username and password didn't match. Please try again.
+          </div>
+          {% endif %}
+        </div>
+        <div class="row justify-content-center">
+          <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="row">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            </div>
+            <div class="row">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            </div>
+            <br>
+            <div class="row justify-content-end">
+              <div class="col">
+                <input class="btn btn-info btn-block"  type="submit" value="login"/>
+                <input type="hidden" name="next" value="{{ next }}" />
+              </div>
+              <div class="col">
+                <a class="btn btn-info btn-block" role="button" href="{% url 'signup' %}">Register</a>
+              </div>
+            </div>
+          </form>
+
+          </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

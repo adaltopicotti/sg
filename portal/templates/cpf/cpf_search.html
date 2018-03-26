@@ -1,0 +1,65 @@
+{% extends 'website/structure/base.html' %}
+
+{% block content %}
+<div class="post">
+  <div class="col-8">
+  </div>
+  <div class="container">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 4logic_cpf -->
+    <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-4456878218517382"
+    data-ad-slot="7479996161"
+    data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+  <br><br>
+  <div class="row justify-content-center">
+    <div class="col-5 col-md-5">
+      <div class="card">
+        <div class="card-header">Consulta de CPF</div>
+        <div class="card-body">
+          <form method="post">{% csrf_token %}
+            <div class="row">
+              <div class="col-md-6">
+                {{form.cpfnumber}}
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-secondary" type="submit">Consultar</button>
+              </div>
+            </div>
+          </form><br>
+          {% if result %}
+          <div class="card bg-light mb-3" >
+            <div class="card-body">
+              <div class="card">
+                <div class="card-header">
+                  CPF:
+                  {% if channel == "db" %}
+                  {{result.formattedcpf}}
+                  {% else %}
+                  {{result.cpf}}
+                  {% endif %}
+                </div>
+                <div class="card-header">
+                  Nome:
+                  {{result.nome}}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-offset-2">
+    </div>
+  </div>
+</div>
+{% endblock %}
