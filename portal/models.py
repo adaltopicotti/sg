@@ -23,3 +23,8 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
     instance.profile.save()
+
+
+class Logo(models.Model):
+    titulo = models.CharField(max_length = 200)
+    imagem = models.ImageField()
