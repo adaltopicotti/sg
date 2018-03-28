@@ -5,69 +5,67 @@
 <div class="row justify-content-center fixed-bottom">
 </div>
 <div class="container fixed-midle">
-  <div class="card" style="width: 12rem;">
-    <img class="card-img-top" src="{% static 'img/copar.jpg' %}" alt="Card image cap">
+<!--  <div class="card" style="width: 12rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
     <div class="card-body">
     </div>
-  </div>
+  </div> -->
   <div class="row justify-content-center">
     <div class="col align-self-center">
       <form method="POST" class="post-form">{% csrf_token %}
-        <div id="accordion">
-          <div class="card">
-            <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                  Cooperativa
-                </button>
-              </h5>
-            </div>
-            <div id="collapseOne" class="collapse {% if collapseOpt == 1 %} show {% endif %}" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body">
-                <!-- Formulário da Coperativa -->
-                <div>
-                  {{ cooperativaForm.as_p }}
-                  <button class="btn btn-info" type="submit" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    Próximo
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header" id="headingTwo">
-              <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Segurado
-                </button>
-              </h5>
-            </div>
-            <div id="collapseTwo" class="collapse {% if collapseOpt == 2 %} show {% endif %}" aria-labelledby="headingTwo" data-parent="#accordion">
-              <div class="card-body">
-                <!-- Formulário do Segurado -->
-                <div>
-                  {{ seguradoForm.as_p }}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header" id="headingThree">
-              <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Collapsible Group Item #3
-                </button>
-              </h5>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-              <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-              </div>
-            </div>
+        <!-- Formulário da Coperativa -->
+        <div class="fluid-container">
+          <div class="form-row">
+            
+            <p>
+              {{cooperativaForm.cooperativa.label_tag}}
+              {{cooperativaForm.cooperativa}}
+            </p>
+            <p>
+              {{cooperativaForm.agencia.label_tag}}
+              {{cooperativaForm.agencia}}
+            </p>
+
+            {{cooperativaForm.solicitante.label_tag}}
+            {{cooperativaForm.solicitante}}
+
+            {{cooperativaForm.email.label_tag}}
+            {{cooperativaForm.email}}
+
+
+            {{cooperativaForm.telefone.label_tag}}
+            {{cooperativaForm.telefone}}
+
+
+            {{cooperativaForm.celular.label_tag}}
+            {{cooperativaForm.celular}}
           </div>
         </div>
+        <!-- Formulário do Segurado -->
+        <div class="fluid-container">
+          <h5>Cliente</h5>
+          <div class="form-row">
+            {{seguradoForm.nome.label_tag}}
+            {{seguradoForm.nome}}
+
+            {{seguradoForm.email.label_tag}}
+            {{seguradoForm.email}}
+
+            {{seguradoForm.telefone.label_tag}}
+            {{seguradoForm.telefone}}
 
 
+            {{seguradoForm.celular.label_tag}}
+            {{seguradoForm.celular}}
+
+            {{seguradoForm.cnpj.label_tag}}
+            {{seguradoForm.cnpj}}
+
+            {{seguradoForm.endereco.label_tag}}
+            {{seguradoForm.municipio}}
+
+          </div>
+        </div>
           <button type="submit" class="save btn btn-default">Guardar</button>
       </form>
     </div>

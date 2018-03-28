@@ -4,17 +4,17 @@ from .models import Cooperativa, Segurado
 class CooperativaForm(forms.ModelForm):
 
     cooperativa = forms.CharField(label='Cooperativa',widget=forms.TextInput(
-        attrs={'class':'form-control'}))
+        attrs={'class':'form-control', 'id':'inputCooperativa'}))
     agencia = forms.CharField(label='Agência',widget=forms.TextInput(
-        attrs={'class':'form-control'}))
+        attrs={'type':'text', 'class':'form-control', 'id':'inputAgencia'}))
     solicitante = forms.CharField(label='Solicitante',widget=forms.TextInput(
-        attrs={'class':'form-control'}))
+        attrs={'class':'form-control', 'id':'inputSolicitante'}))
     email = forms.EmailField(label='E-Mail',widget=forms.EmailInput(
-        attrs={'class':'form-control', 'placeholder':'exemplo@exemplo.com'}))
+        attrs={'class':'form-control', 'id':'inputSolEmail', 'placeholder':'exemplo@exemplo.com'}))
     telefone = forms.CharField(label='Telefone',widget=forms.TextInput(
-        attrs={'class':'form-control'}))
+        attrs={'class':'form-control', 'id':'inputSolTelefone'}))
     celular = forms.CharField(label='Celular',widget=forms.TextInput(
-        attrs={'class':'form-control'}))
+        attrs={'class':'form-control', 'id':'inputSolCelular'}))
 
     class Meta:
         model = Cooperativa

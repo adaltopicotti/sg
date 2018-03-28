@@ -4,7 +4,7 @@ from agendamento.forms import CooperativaForm, SeguradoForm
 
 def agendamento_novo(request):
 
-    return render(request, 'agendamento/novo.html', {
+    return render(request, 'agendamento/novo0.html', {
         'cooperativaForm': CooperativaForm,
         'seguradoForm': SeguradoForm,
         'collapseOpt': 1} )
