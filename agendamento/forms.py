@@ -1,5 +1,5 @@
 from django import forms
-from .models import Cooperativa, Segurado, Empresarial
+from .models import *
 
 class CooperativaForm(forms.ModelForm):
 
@@ -19,6 +19,16 @@ class CooperativaForm(forms.ModelForm):
     class Meta:
         model = Cooperativa
         fields = ('cooperativa',)
+
+
+class RamoForm(forms.ModelForm):
+    nome = forms.ModelChoiceField(label="Ramo",
+        queryset=Ramo.objects.all().order_by('nome'),
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        required=True)
+    class Meta:
+        model = Ramo
+        fields = ('nome',)
 
 
 class SeguradoForm(forms.ModelForm):
@@ -49,6 +59,23 @@ class EmpresarialForm(forms.ModelForm):
         attrs={'type':'number', 'class':'form-control', 'id':'inputEmpQntLRisc'}))
     IS = forms.CharField(label='Importância Segurada',widget=forms.TextInput(
         attrs={'class':'form-control', 'id':'inputEmpIS'}))
+    renovacao_cia = forms.CharField(label='Renovação - Seguradora',widget=forms.TextInput(
+        attrs={'class':'form-control', 'id':'inputEmpRenovacaoCia'}))
+    final_vigencia = forms.CharField(label='Final de Vigência',widget=forms.TextInput(
+        attrs={'type':'date', 'class':'form-control', 'id':'inputEmpFinalVig'}))
+
+    class Meta:
+        model = Empresarial
+        fields = ('atividade',)
+
+
+class FrotaForm(forms.ModelForm):
+    tipo_veiculo = forms.ModelMultipleChoiceField(label='Tipo de Veiculo',
+        queryset=VeiculoTipo.objects.all().order_by('name'),
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        required=True)
+    qnt_itens_seg = forms.CharField(label='Quantidade de Itens Segurados',widget=forms.TextInput(
+        attrs={'type':'number', 'class':'form-control', 'id':'inputFrotaQntItem'}))
     renovacao_cia = forms.CharField(label='Renovação - Seguradora',widget=forms.TextInput(
         attrs={'class':'form-control', 'id':'inputEmpRenovacaoCia'}))
     final_vigencia = forms.CharField(label='Final de Vigência',widget=forms.TextInput(

@@ -1,0 +1,62 @@
+{% extends 'portal/structure/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="row justify-content-center fixed-bottom">
+</div>
+<div class="container fixed-midle">
+<!--  <div class="card" style="width: 12rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+    </div>
+  </div> -->
+  <div class="row justify-content-center">
+    <div class="col align-self-center">
+      <form method="POST" class="post-form">{% csrf_token %}
+        <div class="dropdown-divider"></div>
+        <h4>Cooperativa</h4>
+        <!-- Start cooperativaForm -->
+        <div class="form-row">
+          <div class="form-group col-md-5 col-sm-6">
+            <label for="inputCooperativa">{{cooperativaForm.cooperativa.label_tag}}</label>
+            {{cooperativaForm.cooperativa}}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputAgencia">{{cooperativaForm.agencia.label_tag}}</label>
+            {{cooperativaForm.agencia}}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-5">
+            <label for="inputSolicitante">{{cooperativaForm.solicitante.label_tag}}</label>
+            {{cooperativaForm.solicitante}}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputSolEmail">{{cooperativaForm.email.label_tag}}</label>
+            {{cooperativaForm.email}}
+          </div>
+          <div class="form-group col-md-3 col-sm-6">
+            <label for="inputSolTelefone">{{cooperativaForm.telefone.label_tag}}</label>
+            {{cooperativaForm.telefone}}
+          </div>
+          <div class="form-group col-md-3 col-sm-6">
+            <label for="inputSolCelular">{{cooperativaForm.celular.label_tag}}</label>
+            {{cooperativaForm.celular}}
+          </div>
+        </div>
+        <!-- Product Selection -->
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inputState">{{ramoForm.nome.label_tag}}</label>
+            {{ramoForm.nome}}
+          </div>
+        </div>
+        {% include 'agendamento/segurado_form.html' %}
+        {% include 'agendamento/frota_form.html' %}
+        {% include 'agendamento/emp_form.html' %}
+        <button type="submit" class="save btn btn-primary">Agendar</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

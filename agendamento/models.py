@@ -32,7 +32,12 @@ class Segurado(models.Model):
 
 
 class Ramo(models.Model):
-    nome = models.CharField(max_length=200, null=False)
+    TYPE_CHOICES = (
+        ('Empresarial', 'Empresarial',),
+        ('Vida', 'Vida',),
+        ('Frota', 'Frota',),
+    )
+    nome = models.CharField(max_length=20, choices=TYPE_CHOICES)
 
     def __str__(self):
         return self.nome
@@ -69,7 +74,7 @@ class VeiculoTipo(models.Model):
 
 
 class Frota(models.Model):
-    tipo_empresa = models.ManyToManyField(VeiculoTipo)
+    tipo_veiculo = models.ManyToManyField(VeiculoTipo)
     qnt_itens_seg = models.IntegerField(null=False)
     renovacao_cia = models.CharField(max_length=200)
     final_vigencia = models.DateField(("Date"), null=False)

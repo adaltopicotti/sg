@@ -12,7 +12,7 @@
   </div> -->
   <div class="row justify-content-center">
     <div class="col align-self-center">
-      <form>
+      <form method="POST" class="post-form">{% csrf_token %}
         <div class="dropdown-divider"></div>
         <h4>Cooperativa</h4>
         <!-- Start cooperativaForm -->
@@ -44,17 +44,24 @@
             {{cooperativaForm.celular}}
           </div>
         </div>
+        <!-- Product Selection -->
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inputState">{{ramoForm.nome.label_tag}}</label>
+            {{ramoForm.nome}}
+          </div>
+        </div>
         <!-- Start seguradoForm -->
         <div class="dropdown-divider"></div>
         <h4>Segurado</h4>
         <div class="form-row">
-          <div class="form-group col-md-5 col-sm-6">
-            <label for="inputSegNome">{{seguradoForm.nome.label_tag}}</label>
-            {{seguradoForm.nome}}
-          </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-3 col-sm-6">
             <label for="inputSegCNPJ">{{seguradoForm.cnpj.label_tag}}</label>
             {{seguradoForm.cnpj}}
+          </div>
+          <div class="form-group col-md-6 col-sm-6">
+            <label for="inputSegNome">{{seguradoForm.nome.label_tag}}</label>
+            {{seguradoForm.nome}}
           </div>
           <div class="form-group col-md-5">
             <label for="inputSegEndereco">{{seguradoForm.endereco.label_tag}}</label>
@@ -109,7 +116,7 @@
             </label>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <button type="submit" class="save btn btn-primary">Sign in</button>
       </form>
     </div>
   </div>
