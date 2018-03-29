@@ -54,7 +54,7 @@ class SeguradoForm(forms.ModelForm):
 
 class EmpresarialForm(forms.ModelForm):
     atividade = forms.CharField(label='Atividade',widget=forms.TextInput(
-        attrs={'class':'form-control', 'id':'inputEmpAtividade'}))
+        attrs={'class':'form-control custom-select', 'id':'inputEmpAtividade'}))
     qnt_local_risco = forms.CharField(label='Quantidade de Locais de Risco',widget=forms.TextInput(
         attrs={'type':'number', 'class':'form-control', 'id':'inputEmpQntLRisc'}))
     IS = forms.CharField(label='Importância Segurada',widget=forms.TextInput(
@@ -68,19 +68,22 @@ class EmpresarialForm(forms.ModelForm):
         model = Empresarial
         fields = ('atividade',)
 
+CHOICES = (
+    ('1', 'Leve'),
+    ('2', 'Pesado'),
+)
 
 class FrotaForm(forms.ModelForm):
-    tipo_veiculo = forms.ModelMultipleChoiceField(label='Tipo de Veiculo',
-        queryset=VeiculoTipo.objects.all().order_by('name'),
-        widget=forms.Select(attrs={'class': 'form-control'}),
-        required=True)
+
+    tipo_leve = forms.CharField(widget=forms.CheckboxInput)
+    tipo_pesado = forms.CharField(widget=forms.CheckboxInput)
+
     qnt_itens_seg = forms.CharField(label='Quantidade de Itens Segurados',widget=forms.TextInput(
         attrs={'type':'number', 'class':'form-control', 'id':'inputFrotaQntItem'}))
     renovacao_cia = forms.CharField(label='Renovação - Seguradora',widget=forms.TextInput(
         attrs={'class':'form-control', 'id':'inputEmpRenovacaoCia'}))
-    final_vigencia = forms.CharField(label='Final de Vigência',widget=forms.TextInput(
-        attrs={'type':'date', 'class':'form-control', 'id':'inputEmpFinalVig'}))
+
 
     class Meta:
-        model = Empresarial
-        fields = ('atividade',)
+        model = Frota
+        fields = ('tipo_leve', 'qnt_itens_seg', 'renovacao_cia')

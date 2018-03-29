@@ -74,10 +74,11 @@ class VeiculoTipo(models.Model):
 
 
 class Frota(models.Model):
-    tipo_veiculo = models.ManyToManyField(VeiculoTipo)
+    tipo_leve = models.BooleanField(blank=True, default=False)
+    tipo_pesado = models.BooleanField(blank=True, default=False)
     qnt_itens_seg = models.IntegerField(null=False)
     renovacao_cia = models.CharField(max_length=200)
-    final_vigencia = models.DateField(("Date"), null=False)
+    #final_vigencia = models.DateField(("Date"), blank=True, null=True)
 
 
 class TransporteTipo(models.Model):
