@@ -58,7 +58,7 @@ class EmpresarialForm(forms.ModelForm):
     qnt_local_risco = forms.CharField(label='Quantidade de Locais de Risco',widget=forms.TextInput(
         attrs={'type':'number', 'class':'form-control', 'id':'inputEmpQntLRisc'}))
     IS = forms.CharField(label='Importância Segurada',widget=forms.TextInput(
-        attrs={'class':'form-control', 'id':'inputEmpIS'}))
+        attrs={'type':'currency', 'class':'form-control', 'id':'inputEmpIS'}))
     renovacao_cia = forms.CharField(label='Renovação - Seguradora',widget=forms.TextInput(
         attrs={'class':'form-control', 'id':'inputEmpRenovacaoCia'}))
     final_vigencia = forms.CharField(label='Final de Vigência',widget=forms.TextInput(
