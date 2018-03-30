@@ -12,12 +12,13 @@
   </div> -->
   <div class="row justify-content-center">
     <div class="col align-self-center">
-      <form method="post">{% csrf_token %}
-
+      <form method="post" class="post-form">{% csrf_token %}
+        {% include 'agendamento/coop_form.html' %}
+        
         {{collapseOpt}}
-        {% include 'agendamento/frota_form.html' %}
-
-        <button type="submit" class="save btn btn-primary">Agendar</button>
+        <div class="col-md-1">
+          <button class="btn btn-secondary" type="submit">Consultar</button>
+        </div>
       </form>
     </div>
   </div>

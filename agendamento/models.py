@@ -30,7 +30,6 @@ class Segurado(models.Model):
     def __str__(self):
         return  self.nome
 
-
 class Ramo(models.Model):
     TYPE_CHOICES = (
         ('Empresarial', 'Empresarial',),
@@ -48,7 +47,6 @@ class Empresarial(models.Model):
     IS = models.FloatField(null=False)
     renovacao_cia = models.CharField(max_length=200)
     final_vigencia = models.DateField(("Date"), null=False )
-
 
 class VidaGrupo(models.Model):
     TYPE_CHOICES = (
@@ -72,14 +70,13 @@ class VeiculoTipo(models.Model):
     def __str__(self):
         return self.name
 
-
 class Frota(models.Model):
+    segurado = models.ForeignKey(Segurado, on_delete=models.CASCADE)
     tipo_leve = models.BooleanField(blank=True, default=False)
     tipo_pesado = models.BooleanField(blank=True, default=False)
     qnt_itens_seg = models.IntegerField(null=False)
     renovacao_cia = models.CharField(max_length=200)
-    #final_vigencia = models.DateField(("Date"), blank=True, null=True)
-
+    final_vigencia = models.DateField(("Date"), null=False)
 
 class TransporteTipo(models.Model):
     CHOICES = (
@@ -111,7 +108,6 @@ class Transporte(models.Model):
     renovacao_cia = models.CharField(max_length=200)
     final_vigencia = models.DateField(("Date"), null=False)
 
-
 class Produto(models.Model):
     ramo = models.ForeignKey(Ramo, on_delete=models.CASCADE)
     nome = models.CharField(max_length=200, null=False)
@@ -120,9 +116,12 @@ class Produto(models.Model):
         return self.nome
 
 class Agendamento(models.Model):
+
+    #name = models.CharField(max_length=20,choices=CHOICES, unique=True)
     cooperativa = models.ForeignKey(Cooperativa,on_delete=models.CASCADE)
     segurado = models.ForeignKey(Segurado,on_delete=models.CASCADE)
     ramo = models.ForeignKey(Ramo,on_delete=models.CASCADE)
+    bem = models.IntegerField(null=False)
     colaborador = models.CharField(max_length=200)
     pa = models.CharField(max_length=200)
     inclusao = models.DateField(("Date"), null=False)

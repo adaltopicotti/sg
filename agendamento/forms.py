@@ -18,7 +18,7 @@ class CooperativaForm(forms.ModelForm):
 
     class Meta:
         model = Cooperativa
-        fields = ('cooperativa',)
+        fields = ('cooperativa', 'agencia', 'solicitante', 'email', 'telefone', 'celular',)
 
 
 class RamoForm(forms.ModelForm):
@@ -45,16 +45,16 @@ class SeguradoForm(forms.ModelForm):
     endereco = forms.CharField(label='Endereço',widget=forms.TextInput(
         attrs={'class':'form-control', 'id':'inputSegEndereco'}))
     municipio = forms.CharField(label='Municipio',widget=forms.TextInput(
-        attrs={'class':'form-control', 'id':'inputSegMunicippio'}))
+        attrs={'class':'form-control', 'id':'inputSegMunicipio'}))
 
     class Meta:
         model = Segurado
-        fields = ('nome',)
+        fields = ('nome', 'email','telefone', 'celular', 'cnpj', 'endereco', 'municipio',)
 
 
 class EmpresarialForm(forms.ModelForm):
     atividade = forms.CharField(label='Atividade',widget=forms.TextInput(
-        attrs={'class':'form-control custom-select', 'id':'inputEmpAtividade'}))
+        attrs={'class':'form-control', 'id':'inputEmpAtividade'}))
     qnt_local_risco = forms.CharField(label='Quantidade de Locais de Risco',widget=forms.TextInput(
         attrs={'type':'number', 'class':'form-control', 'id':'inputEmpQntLRisc'}))
     IS = forms.CharField(label='Importância Segurada',widget=forms.TextInput(
@@ -66,24 +66,24 @@ class EmpresarialForm(forms.ModelForm):
 
     class Meta:
         model = Empresarial
-        fields = ('atividade',)
+        fields = ('atividade', 'qnt_local_risco', 'IS', 'renovacao_cia', 'final_vigencia')
 
-CHOICES = (
-    ('1', 'Leve'),
-    ('2', 'Pesado'),
-)
 
 class FrotaForm(forms.ModelForm):
 
-    tipo_leve = forms.CharField(widget=forms.CheckboxInput)
-    tipo_pesado = forms.CharField(widget=forms.CheckboxInput)
+    tipo_leve = forms.CharField(label='Leve', required=False, widget=forms.CheckboxInput(
+    attrs={'class':'form-control'}))
+    tipo_pesado = forms.CharField(label='Pesado', required=False, widget=forms.CheckboxInput(
+    attrs={'class':'form-control'}))
 
-    qnt_itens_seg = forms.CharField(label='Quantidade de Itens Segurados',widget=forms.TextInput(
+    qnt_itens_seg = forms.CharField(label='Quantidade de Itens',widget=forms.TextInput(
         attrs={'type':'number', 'class':'form-control', 'id':'inputFrotaQntItem'}))
     renovacao_cia = forms.CharField(label='Renovação - Seguradora',widget=forms.TextInput(
-        attrs={'class':'form-control', 'id':'inputEmpRenovacaoCia'}))
+        attrs={'class':'form-control', 'id':'inputFrotaRenovacaoCia'}))
+    final_vigencia = forms.CharField(label='Final de Vigência',widget=forms.TextInput(
+        attrs={'type':'date', 'class':'form-control', 'id':'inputFrotaFinalVig'}))
 
 
     class Meta:
         model = Frota
-        fields = ('tipo_leve', 'qnt_itens_seg', 'renovacao_cia')
+        fields = ('tipo_leve', 'tipo_pesado', 'qnt_itens_seg', 'renovacao_cia', 'final_vigencia',)
