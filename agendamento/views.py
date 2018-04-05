@@ -19,16 +19,17 @@ def agendamento_novo(request):
     if request.method == "POST":
         coopForm = CooperativaForm(request.POST)
         ramoForm = RamoForm(request.POST)
+
         if coopForm.is_valid():
             #coopForm.save()
-            secondaryForm = switch_form(ramoForm['nome'])
+            #secondaryForm = switch_form(ramoForm['nome'])
             return render(request, 'agendamento/novo2.html', {
                 'cooperativaForm': CooperativaForm,
                 'seguradoForm': SeguradoForm,
                 'empresarialForm': EmpresarialForm,
                 'ramoForm': RamoForm,
                 'frotaForm': FrotaForm,
-                'collapseOpt': ramoForm['nome'].id})
+                'collapseOpt': ramoForm['nome'].value})
         else:
             render(request, 'agendamento/novo2.html', {
             'cooperativaForm': CooperativaForm,
@@ -49,6 +50,6 @@ def agendamento_novo(request):
     'cooperativaForm': CooperativaForm,
     'seguradoForm': SeguradoForm,
     'empresarialForm': EmpresarialForm,
-    'ramos': ramos,
+    'ramoForm': RamoForm,
     'frotaForm': FrotaForm,
     'collapseOpt': 3})
