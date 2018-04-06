@@ -29,11 +29,19 @@
             <label for="inputSolCelular">{{cooperativaForm.celular.label_tag}}</label>
             {{cooperativaForm.celular}}
           </div>
+
         </div>
         <!-- Product Selection -->
         <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="inputState">{{ramoForm.nome.label_tag}}</label>
-            {{ramoForm.nome}}
+          <div class="form-group col-md-3">
+            <label for="inputRamo" >Ramo:</label>
+            <select id="inputRamo" class="form-control" name="inputRamo">
+              {% for ramo in ramos %}
+                <option value="{{ramo.nome}}"
+                  {% if ramo.nome == selected %}
+                    selected
+                  {% endif %}>{{ramo.nome}}</option>
+                {% endfor %}
+            </select>
           </div>
         </div>

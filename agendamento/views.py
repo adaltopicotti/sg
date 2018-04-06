@@ -6,9 +6,9 @@ from agendamento.models import *
 
 def switch_form(argument):
     switcher = {
-        "Frota": "frota_form.html",
-        "Empresarial": "emp_form.html",
-        "Transporte": "transp_form.html",
+        "Frota": ["frota_form.html", FrotaForm],
+        "Empresarial": ["emp_form.html", EmpresarialForm],
+        "Transporte": ["transp_form.html", ''],
 
     }
     return switcher.get(argument)
@@ -19,37 +19,29 @@ def agendamento_novo(request):
     if request.method == "POST":
         coopForm = CooperativaForm(request.POST)
         ramoForm = RamoForm(request.POST)
-
+        ramoChoice = request.POST['inputRamo']
         if coopForm.is_valid():
             #coopForm.save()
-            #secondaryForm = switch_form(ramoForm['nome'])
+            secondaryForm = switch_form(ramoChoice)
             return render(request, 'agendamento/novo2.html', {
-                'cooperativaForm': CooperativaForm,
+                'ramos': ramos,
+                'primaryFormSet': 'disabled',
+                'selected': ramoChoice,
+                'cooperativaForm': coopForm,
                 'seguradoForm': SeguradoForm,
-                'empresarialForm': EmpresarialForm,
-                'ramoForm': RamoForm,
-                'frotaForm': FrotaForm,
-                'collapseOpt': ramoForm['nome'].value})
+                'secondaryForm': secondaryForm[1],
+                'secondaryFormTemplate':secondaryForm[0]})
         else:
             render(request, 'agendamento/novo2.html', {
             'cooperativaForm': CooperativaForm,
-            'seguradoForm': SeguradoForm,
-            'empresarialForm': EmpresarialForm,
-            'ramoForm': RamoForm,
-            'frotaForm': FrotaForm,
             'collapseOpt': 2})
     else:
         render(request, 'agendamento/novo2.html', {
         'cooperativaForm': CooperativaForm,
-        'seguradoForm': SeguradoForm,
-        'empresarialForm': EmpresarialForm,
-        'ramoForm': RamoForm,
-        'frotaForm': FrotaForm,
         'collapseOpt': 4})
     return render(request, 'agendamento/novo2.html', {
     'cooperativaForm': CooperativaForm,
     'seguradoForm': SeguradoForm,
     'empresarialForm': EmpresarialForm,
-    'ramoForm': RamoForm,
-    'frotaForm': FrotaForm,
-    'collapseOpt': 3})
+    'collapseOpt': 3,
+    'ramos':ramos})
