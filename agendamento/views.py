@@ -23,6 +23,21 @@ def agendamento_novo(request):
         if coopForm.is_valid():
             #coopForm.save()
             secondaryForm = switch_form(ramoChoice)
+            seguradoForm = SeguradoForm(request.POST)
+            if seguradoForm.is_valid():
+                secForm = secondaryForm[1](request.POST)
+                if secForm.is_valid():
+                    coopForm.save()
+                    seguradoForm.save()
+                    #secForm.save()
+                    return render(request, 'agendamento/novo2.html', {
+                        'ramos': ramos,
+                        'primaryFormSet': 'disabled',
+                        'selected': ramoChoice,
+                        'cooperativaForm': coopForm,
+                        'seguradoForm': seguradoForm,
+                        'secondaryForm': secForm,
+                        'secondaryFormTemplate':secondaryForm[0]})
             return render(request, 'agendamento/novo2.html', {
                 'ramos': ramos,
                 'primaryFormSet': 'disabled',
@@ -31,10 +46,7 @@ def agendamento_novo(request):
                 'seguradoForm': SeguradoForm,
                 'secondaryForm': secondaryForm[1],
                 'secondaryFormTemplate':secondaryForm[0]})
-        else:
-            render(request, 'agendamento/novo2.html', {
-            'cooperativaForm': CooperativaForm,
-            'collapseOpt': 2})
+
     else:
         render(request, 'agendamento/novo2.html', {
         'cooperativaForm': CooperativaForm,

@@ -1,7 +1,6 @@
 {% extends 'portal/structure/base.html' %}
 {% load staticfiles %}
 {% block content %}
-
 <div class="row justify-content-center fixed-bottom">
 </div>
 <div class="container fixed-midle">
@@ -12,9 +11,23 @@
   </div> -->
   <div class="row justify-content-center">
     <div class="col align-self-center">
-      <form method="post" class="post-form">{% csrf_token %}
-        <fieldset {{primaryFormSet}}>
+      <form method="post" class="post-form" name="agendamento">{% csrf_token %}
+        <fieldset>
         {% include 'agendamento/coop_form.html' %}
+        <!-- Product Selection -->
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label for="inputRamo" >Ramo:</label>
+            <select id="inputRamo" class="form-control" name="inputRamo">
+              {% for ramo in ramos %}
+                <option value="{{ramo.nome}}"
+                  {% if ramo.nome == selected %}
+                    selected
+                  {% endif %}>{{ramo.nome}}</option>
+                {% endfor %}
+            </select>
+          </div>
+        </div>
         </fieldset>
         {% if secondaryForm %}
         {% include 'agendamento/segurado_form.html' %}
