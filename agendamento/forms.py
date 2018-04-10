@@ -30,7 +30,7 @@ class RamoForm(forms.ModelForm):
         model = Ramo
         fields = ('nome',)
 
-
+#segurado
 class SeguradoForm(forms.ModelForm):
     nome = forms.CharField(label='Nome',widget=forms.TextInput(
         attrs={'class':'form-control', 'id':'inputSegNome'}))
@@ -50,6 +50,7 @@ class SeguradoForm(forms.ModelForm):
     class Meta:
         model = Segurado
         fields = ('nome', 'email','telefone', 'celular', 'cnpj', 'endereco', 'municipio',)
+
 
 
 class EmpresarialForm(forms.ModelForm):
