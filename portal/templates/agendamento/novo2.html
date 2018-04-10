@@ -19,11 +19,14 @@
         {% if secondaryForm %}
         {% include 'agendamento/segurado_form.html' %}
         {% include "agendamento/"|add:secondaryFormTemplate %}
-        {% endif %}
-
         <div class="col-md-1">
-          <button class="btn btn-secondary" type="submit">Consultar</button>
+          <button class="btn btn-secondary" type="submit">Cadastrar</button>
         </div>
+        {% else %}
+        <div class="col-md-1">
+          <button class="btn btn-secondary" type="submit">Próximo</button>
+        </div>
+        {% endif %}
       </form>
     </div>
   </div>
