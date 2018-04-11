@@ -25,7 +25,7 @@ class Segurado(models.Model):
     celular = models.CharField(max_length=50, null=True)
     cnpj = models.CharField(max_length=14, null=False)
     endereco = models.CharField(max_length=200, null= False)
-    municipio = models.CharField(max_length=50, null=False)
+    municipio = models.CharField(max_length=100, null=False)
 
     def __str__(self):
         return  self.nome
