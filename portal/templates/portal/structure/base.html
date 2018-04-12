@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Nome da Empresa</title>
+    <title>Nome da Empresa {{primaryFormSet}}</title>
   </head>
   <body>
     <div>
@@ -31,29 +31,28 @@
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Agendamentos
+                  Cadastro
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{% url 'agendamento_novo' %}">Cadastrar</a>
-                  <a class="dropdown-item" href="#">Relatório</a>
+                  <a class="dropdown-item" href="{% url 'agendamento_novo' %}">Agendamento</a>
+                  <a class="dropdown-item" href="">Segurado</a>
                   <!--
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">Something else here</a> -->
                 </div>
               </li>
-              <!--
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Coordenadas
+                  Relatórios
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="$">Consulta</a>
-                  <a class="dropdown-item" href="#">Conversão</a>
-                  <a class="dropdown-item" href="#">Distância</a>
+                  <a class="dropdown-item" href="{% url 'relatorio_cooperativa' %}">Cooperativa</a>
+                  <a class="dropdown-item" href="{% url 'relatorio_segurado' %}">Segurado</a>
+                  <a class="dropdown-item" href="{% url 'relatorio_frota' %}">Frota</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">Something else here</a>
                 </div>
-              </li>-->
+              </li>
               <li class="nav-item">
                 <a class="nav-link disabled" href="#">Disabled</a>
               </li>
@@ -94,6 +93,7 @@
           {% block content %}
           {% endblock %}
         </div>
+        {{pqp}}
     </div>
     <div class="row fixed-bottom">
       <div class="container">

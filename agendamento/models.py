@@ -7,7 +7,7 @@ from django.db import models
 
 class Cooperativa(models.Model):
     cooperativa = models.CharField(max_length=200, null=False)
-    agencia = models.CharField(max_length=200, null=False)
+    agencia = models.CharField(max_length=200, null=False, unique=True)
     solicitante = models.CharField(max_length=200, null=False)
     email = models.EmailField(max_length=100, null=False)
     telefone = models.CharField(max_length=50, null=True)
@@ -23,7 +23,8 @@ class Segurado(models.Model):
     email = models.EmailField(max_length=100, null=False)
     telefone = models.CharField(max_length=50, null=True)
     celular = models.CharField(max_length=50, null=True)
-    cnpj = models.CharField(max_length=14, null=False)
+    cnpj = models.CharField(max_length=14, unique=True, null=False )
+
     endereco = models.CharField(max_length=200, null= False)
     municipio = models.CharField(max_length=100, null=False)
 
@@ -77,6 +78,9 @@ class Frota(models.Model):
     qnt_itens_seg = models.IntegerField(null=False)
     renovacao_cia = models.CharField(max_length=200)
     final_vigencia = models.DateField(("Date"), null=False)
+    def __str__(self):
+        return self.segurado.nome
+
 
 class TransporteTipo(models.Model):
     CHOICES = (

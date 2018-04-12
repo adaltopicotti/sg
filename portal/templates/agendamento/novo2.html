@@ -9,10 +9,11 @@
     <div class="card-body">
     </div>
   </div> -->
+
   <div class="row justify-content-center">
     <div class="col align-self-center">
       <form method="post" class="post-form" name="agendamento">{% csrf_token %}
-        <fieldset>
+        <fieldset {{primaryFormSet}}>
         {% include 'agendamento/coop_form.html' %}
         <!-- Product Selection -->
         <div class="form-row">
@@ -28,18 +29,22 @@
             </select>
           </div>
         </div>
-        </fieldset>
-        {% if secondaryForm %}
+
+        {% if seguradoForm %}
         {% include 'agendamento/segurado_form.html' %}
+        {% endif %}
+
+        <div class="col-md-1">
+          <button class="btn btn-secondary" type="submit">Proximo</button>
+        </div>
+        {% if secondaryForm %}
+
         {% include "agendamento/"|add:secondaryFormTemplate %}
         <div class="col-md-1">
           <button class="btn btn-secondary" type="submit">Cadastrar</button>
-        </div>
-        {% else %}
-        <div class="col-md-1">
-          <button class="btn btn-secondary" type="submit">Próximo</button>
-        </div>
+        </div>{{segurado}}
         {% endif %}
+        </fieldset>
       </form>
     </div>
   </div>

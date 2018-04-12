@@ -71,7 +71,6 @@ class EmpresarialForm(forms.ModelForm):
 
 
 class FrotaForm(forms.ModelForm):
-
     tipo_leve = forms.CharField(label='Leve', required=False, widget=forms.CheckboxInput(
     attrs={'class':'form-control'}))
     tipo_pesado = forms.CharField(label='Pesado', required=False, widget=forms.CheckboxInput(
@@ -87,4 +86,4 @@ class FrotaForm(forms.ModelForm):
 
     class Meta:
         model = Frota
-        fields = ('tipo_leve', 'tipo_pesado', 'qnt_itens_seg', 'renovacao_cia', 'final_vigencia',)
+        fields = ( 'tipo_leve', 'tipo_pesado', 'qnt_itens_seg', 'renovacao_cia', 'final_vigencia',)

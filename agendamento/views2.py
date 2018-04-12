@@ -20,21 +20,17 @@ def agendamento_novo(request):
     ramos = Ramo.objects.all().order_by('nome')
     if request.method == "POST":
         coopForm = CooperativaForm(request.POST)
-        seguradoForm = SeguradoForm(request.POST)
+        ramoForm = RamoForm(request.POST)
         ramoChoice = request.POST['inputRamo']
         if coopForm.is_valid():
             coopForm.save()
             secondaryForm = switch_form(ramoChoice)
-            if seguradoForm.is_valid():
-                return render(request, 'agendamento/novo2.html', {
-                    'ramos': ramos,
-                    'cooperativaForm': coopForm,
-                    'seguradoForm': seguradoForm,})
             return render(request, 'agendamento/novo2.html', {
                 'ramos': ramos,
+                'primaryFormSet': 'disabled111',
+                'selected': ramoChoice,
                 'cooperativaForm': coopForm,
-                'seguradoForm': SeguradoForm,})
-
+                'seguradoForm': SeguradoForm})
 
     else:
         render(request, 'agendamento/novo2.html', {
@@ -46,7 +42,7 @@ def agendamento_novo(request):
     'collapseOpt': 3,
     'ramos':ramos})
 
-def cadastro_segurado(request, coopForm):
+def cadastro_segurado(request):
     if request.method == "POST":
         seguradoForm = SeguradoForm(request.POST)
         if seguradoForm.is_valid():
@@ -55,7 +51,6 @@ def cadastro_segurado(request, coopForm):
             return  redirect('cadastro_frota', pk=segurado.pk)
 
     return render(request, 'agendamento/novo2.html', {
-    'coopForm': coopForm,
     'seguradoForm': SeguradoForm,
     'error': segurado})
 
