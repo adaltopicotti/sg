@@ -87,3 +87,18 @@ class FrotaForm(forms.ModelForm):
     class Meta:
         model = Frota
         fields = ( 'tipo_leve', 'tipo_pesado', 'qnt_itens_seg', 'renovacao_cia', 'final_vigencia',)
+
+class AgendamentoForm(forms.ModelForm):
+    colaborador = forms.CharField(label='Colaborador', required=False, widget=forms.TextInput(
+        attrs={'class':'form-control', 'id':'inputColaborador'}))
+    pa = forms.CharField(label='Ponto de Ação', required=False, widget=forms.TextInput(
+        attrs={'class':'form-control', 'id':'inputColaborador'}))
+    inclusao = forms.CharField(label='Inclusão',widget=forms.TextInput(
+        attrs={'type':'date', 'class':'form-control', 'id':'inputInclusao'}))
+    observacao = forms.CharField(label='Ponto de Ação', required=False, widget=forms.TextInput(
+        attrs={'class':'form-control', 'id':'inputObservacao'}))
+
+
+    class Meta:
+        model = Agendamento
+        fields = ( 'colaborador', 'pa', 'observacao',)

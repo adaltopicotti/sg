@@ -128,7 +128,7 @@ class Agendamento(models.Model):
     bem = models.IntegerField(null=False)
     colaborador = models.CharField(max_length=200)
     pa = models.CharField(max_length=200)
-    inclusao = models.DateField(("Date"), null=False)
+    inclusao = models.DateField(("Date"))
     observacao = models.TextField(max_length=500)
 
     def __str__(self):
