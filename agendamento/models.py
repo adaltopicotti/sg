@@ -7,7 +7,7 @@ from django.db import models
 
 class Cooperativa(models.Model):
     cooperativa = models.CharField(max_length=200, null=False)
-    agencia = models.CharField(max_length=200, null=False, unique=True)
+    agencia = models.CharField(max_length=200, null=False)
     solicitante = models.CharField(max_length=200, null=False)
     email = models.EmailField(max_length=100, null=False)
     telefone = models.CharField(max_length=50, null=True)
@@ -23,7 +23,7 @@ class Segurado(models.Model):
     email = models.EmailField(max_length=100, null=False)
     telefone = models.CharField(max_length=50, null=True)
     celular = models.CharField(max_length=50, null=True)
-    cnpj = models.CharField(max_length=14, unique=True, null=False )
+    cnpj = models.CharField(max_length=14, null=False )
 
     endereco = models.CharField(max_length=200, null= False)
     municipio = models.CharField(max_length=100, null=False)

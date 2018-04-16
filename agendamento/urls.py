@@ -2,7 +2,7 @@ from django.conf.urls import include, url
 from . import views
 
 urlpatterns = [
-    url(r'^agendamento/novo/$', views.agendamento_novo, name='agendamento_novo'),
+    #url(r'^agendamento/novo/$', views.agendamento_novo, name='agendamento_novo'),
     url(r'^relatorios/cooperativa$', views.relatorio_cooperativa, name='relatorio_cooperativa'),
     url(r'^relatorios/segurado$', views.relatorio_segurado, name='relatorio_segurado'),
     url(r'^relatorios/frota$', views.relatorio_frota, name='relatorio_frota'),
