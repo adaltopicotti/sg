@@ -30,7 +30,7 @@ def cadastro_agendamento(request):
         cooperativaForm = CooperativaForm(request.POST)
         seguradoForm = SeguradoForm(request.POST)
         secondarySwitch = switch_form(ramoChoice)
-        secondaryForm = ''
+        secondaryForm = EmpresarialForm
         secondaryFormTemplate = secondarySwitch[0]
         if cooperativaForm.is_valid():
             try:
