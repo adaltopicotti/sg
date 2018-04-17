@@ -30,7 +30,7 @@ def cadastro_agendamento(request):
         cooperativaForm = CooperativaForm(request.POST)
         seguradoForm = SeguradoForm(request.POST)
         secondarySwitch = switch_form(ramoChoice)
-        secondaryForm = EmpresarialForm(self)
+        secondaryForm = ''
         secondaryFormTemplate = secondarySwitch[0]
         if cooperativaForm.is_valid():
             try:
@@ -47,20 +47,20 @@ def cadastro_agendamento(request):
             secondaryForm = secondarySwitch[1](request.POST)
             secondaryModel = secondarySwitch[2]
 
-        if secondaryForm.is_valid():
-            cooperativa = Cooperativa.objects.get(agencia=cooperativaForm['agencia'].value())
-            segurado = Segurado.objects.get(cnpj=seguradoForm['cnpj'].value())
-            ramo_id = Ramo.objects.get(nome=ramoChoice).id
-            coop_pk = cooperativa.pk
-            seg_pk = segurado.pk
-            segToForm = Segurado.objects.get(id=seg_pk)
-            secondary = secondaryForm.save(commit=False)
-            secondary.segurado_id = segToForm.id
-            protocol = (10000000 + (secondaryModel.objects.all().latest('id').id +1))
-            secondary.protocol = protocol
-            secondary.save()
-            #verificar o que fazer utilizando cadastro_frota
-            secondary_pk = secondaryModel.objects.get(protocol=protocol)
+            if secondaryForm.is_valid():
+                cooperativa = Cooperativa.objects.get(agencia=cooperativaForm['agencia'].value())
+                segurado = Segurado.objects.get(cnpj=seguradoForm['cnpj'].value())
+                ramo_id = Ramo.objects.get(nome=ramoChoice).id
+                coop_pk = cooperativa.pk
+                seg_pk = segurado.pk
+                segToForm = Segurado.objects.get(id=seg_pk)
+                secondary = secondaryForm.save(commit=False)
+                secondary.segurado_id = segToForm.id
+                protocol = (10000000 + (secondaryModel.objects.all().latest('id').id +1))
+                secondary.protocol = protocol
+                secondary.save()
+                #verificar o que fazer utilizando cadastro_frota
+                secondary_pk = secondaryModel.objects.get(protocol=protocol)
 
             include_agendamento(coop_pk, seg_pk, ramo_id, protocol)
         return render(request, 'agendamento/novo2.html', {
