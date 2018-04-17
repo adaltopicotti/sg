@@ -8,8 +8,8 @@ from agendamento.models import *
 
 def switch_form(argument):
     switcher = {
-        "Frota": ["frota_form.html", FrotaForm],
-        "Empresarial": ["emp_form.html", EmpresarialForm],
+        "Frota": ["frota_form.html", FrotaForm, Frota],
+        "Empresarial": ["emp_form.html", EmpresarialForm, Empresarial],
         "Transporte": ["transp_form.html", ''],
 
     }
@@ -22,6 +22,9 @@ def cadastro_segurado(request, coopForm):
 
 def cadastro_agendamento(request):
     ramos = Ramo.objects.all().order_by('nome')
+    coop_pk = 0
+    seg_pk = 0
+    secondary_pk = 0
     if request.method == "POST":
         ramoChoice = request.POST['inputRamo']
         cooperativaForm = CooperativaForm(request.POST)
@@ -42,30 +45,44 @@ def cadastro_agendamento(request):
             except Segurado.DoesNotExist:
                 seguradoForm.save()
             secondaryForm = secondarySwitch[1](request.POST)
+            secondaryModel = secondarySwitch[2]
 
         if secondaryForm.is_valid():
+            cooperativa = Cooperativa.objects.get(agencia=cooperativaForm['agencia'].value())
+            segurado = Segurado.objects.get(cnpj=seguradoForm['cnpj'].value())
+            ramo_id = Ramo.objects.get(nome=ramoChoice).id
+            coop_pk = cooperativa.pk
+            seg_pk = segurado.pk
+            segToForm = Segurado.objects.get(id=seg_pk)
+            secondary = secondaryForm.save(commit=False)
+            secondary.segurado_id = segToForm.id
+            protocol = (10000000 + (secondaryModel.objects.all().latest('id').id +1))
+            secondary.protocol = protocol
+            secondary.save()
             #verificar o que fazer utilizando cadastro_frota
+            secondary_pk = secondaryModel.objects.get(protocol=protocol)
 
-
+            include_agendamento(coop_pk, seg_pk, ramo_id, protocol)
         return render(request, 'agendamento/novo2.html', {
             'selected': ramoChoice,
             'cooperativaForm': cooperativaForm,
             'seguradoForm': seguradoForm,
             'secondaryForm': secondaryForm,
             'secondaryFormTemplate': secondaryFormTemplate,
-            'ramos':ramos})
+            'ramos':ramos,
+            'pk':secondary_pk})
 
     return render(request, 'agendamento/novo2.html', {
         'cooperativaForm': CooperativaForm,
         'ramos':ramos})
 
-def include_agendamento(coop_id, seg_id, ramo_id, bem):
+def include_agendamento(coop_id, seg_id, ramo_id, secondary_pk):
     agendForm = AgendamentoForm()
     agendamento = agendForm.save(commit=False)
     agendamento.cooperativa_id = coop_id
     agendamento.segurado_id = seg_id
     agendamento.ramo_id = ramo_id
-    agendamento.bem = bem
+    agendamento.bem = secondary_pk
     agendamento.inclusao = timezone.now()
     agendamento.save()
 
