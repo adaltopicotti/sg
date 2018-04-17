@@ -27,7 +27,8 @@ def cadastro_agendamento(request):
         cooperativaForm = CooperativaForm(request.POST)
         seguradoForm = SeguradoForm(request.POST)
         secondarySwitch = switch_form(ramoChoice)
-        
+        secondaryForm = ''
+        secondaryFormTemplate = secondarySwitch[0]
         if cooperativaForm.is_valid():
             try:
                 cooperativa = Cooperativa.objects.get(agencia=cooperativaForm['agencia'].value())
@@ -40,6 +41,10 @@ def cadastro_agendamento(request):
                 segurado = Segurado.objects.get(cnpj=seguradoForm['cnpj'].value())
             except Segurado.DoesNotExist:
                 seguradoForm.save()
+            secondaryForm = secondarySwitch[1](request.POST)
+
+        if secondaryForm.is_valid():
+            #verificar o que fazer utilizando cadastro_frota
 
 
         return render(request, 'agendamento/novo2.html', {
@@ -47,6 +52,7 @@ def cadastro_agendamento(request):
             'cooperativaForm': cooperativaForm,
             'seguradoForm': seguradoForm,
             'secondaryForm': secondaryForm,
+            'secondaryFormTemplate': secondaryFormTemplate,
             'ramos':ramos})
 
     return render(request, 'agendamento/novo2.html', {
