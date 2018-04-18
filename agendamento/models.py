@@ -43,7 +43,6 @@ class Ramo(models.Model):
         return self.nome
 
 class Empresarial(models.Model):
-    segurado = models.ForeignKey(Segurado, on_delete=models.CASCADE)
     protocol = models.TextField(max_length=20, null=False)
     atividade = models.CharField(max_length=200, null=False)
     qnt_local_risco = models.IntegerField(null=False)
@@ -76,8 +75,7 @@ class VeiculoTipo(models.Model):
         return self.name
 
 class Frota(models.Model):
-    segurado = models.ForeignKey(Segurado, on_delete=models.CASCADE)
-    protocol = models.TextField(max_length=20, null=False)
+    protocol = models.CharField(max_length=20, null=False)
     tipo_leve = models.BooleanField(blank=True, default=False)
     tipo_pesado = models.BooleanField(blank=True, default=False)
     qnt_itens_seg = models.IntegerField(null=False)
@@ -115,7 +113,7 @@ class Transporte(models.Model):
     IS = models.FloatField(null=False)
     mercadoria_transportada = models.CharField(max_length=200, null=False)
     renovacao_cia = models.CharField(max_length=200)
-    final_vigencia = models.DateField(("Date"), null=False)
+
 
 class Produto(models.Model):
     ramo = models.ForeignKey(Ramo, on_delete=models.CASCADE)
@@ -124,18 +122,26 @@ class Produto(models.Model):
     def __str__(self):
         return self.nome
 
-class Agendamento(models.Model):
+class Bem(models.Model):
+    protocol = models.CharField(max_length=20)
+    segurado = models.ForeignKey(Segurado,on_delete=models.CASCADE)
+    ramo = models.ForeignKey(Ramo,on_delete=models.CASCADE)
+    ramo_protocol = models.CharField(max_length=20)
+    def __str__(self):
+        return self.protocol
 
+class Agendamento(models.Model):
+    protocol = models.TextField(max_length=20, null=False)
     #name = models.CharField(max_length=20,choices=CHOICES, unique=True)
     cooperativa = models.ForeignKey(Cooperativa,on_delete=models.CASCADE)
     segurado = models.ForeignKey(Segurado,on_delete=models.CASCADE)
     ramo = models.ForeignKey(Ramo,on_delete=models.CASCADE)
-    bem = models.TextField(max_length=20)
+    bem = models.ForeignKey(Bem,on_delete=models.CASCADE)
     colaborador = models.CharField(max_length=200)
     pa = models.CharField(max_length=200)
+    final_vigencia = models.DateField(("Date"), null=False)
     inclusao = models.DateField(("Date"))
     observacao = models.TextField(max_length=500)
 
     def __str__(self):
-        title = (self.bem, self.cooperativa, self.segurado, self.ramo)
-        return title
+        return self.protocol

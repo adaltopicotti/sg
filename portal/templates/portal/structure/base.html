@@ -46,6 +46,7 @@
                   Relatórios
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'relatorio_agendamento' %}">Agendamento</a>
                   <a class="dropdown-item" href="{% url 'relatorio_cooperativa' %}">Cooperativa</a>
                   <a class="dropdown-item" href="{% url 'relatorio_segurado' %}">Segurado</a>
                   <a class="dropdown-item" href="{% url 'relatorio_frota' %}">Frota</a>
@@ -88,7 +89,7 @@
     <!-- End navbar content -->
     <br>
     <div class="justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
           <!-- Content here -->
           {% block content %}
           {% endblock %}

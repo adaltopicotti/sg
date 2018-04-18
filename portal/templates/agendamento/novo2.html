@@ -22,7 +22,7 @@
             <select id="inputRamo" class="form-control" name="inputRamo">
               {% for ramo in ramos %}
                 <option value="{{ramo.nome}}"
-                  {% if ramo.nome == selected %}
+                  {% if ramo.nome == ramoChoice %}
                     selected
                   {% endif %}>{{ramo.nome}}</option>
                 {% endfor %}

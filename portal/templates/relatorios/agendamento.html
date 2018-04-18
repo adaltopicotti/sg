@@ -1,0 +1,47 @@
+{% extends 'portal/structure/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="fluid-container">
+  <div class="row justify-content-md-center">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Protocolo</th>
+          <th scope="col">Cooperativa</th>
+          <th scope="col">Solicitante</th>
+          <th scope="col">E-Mail</th>
+          <th scope="col">Telefone</th>
+          <th scope="col">Celular</th>
+          <th scope="col">Segurado</th>
+          <th scope="col">Ramo</th>
+          <th scope="col">Final Vigência</th>
+          <th scope="col">Colaborador</th>
+          <th scope="col">Inclusão</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for agendamento in agendamentos %}
+        <tr>
+          <th scope="row"><a href="">{{agendamento.protocol}}</a></th>
+          <td>{{agendamento.cooperativa}}</td>
+          <td>{{agendamento.cooperativa.solicitante}}</td>
+          <td><a href="">{{agendamento.cooperativa.email}}</a></td>
+          <td>{{agendamento.cooperativa.telefone}}</td>
+          <td>{{agendamento.cooperativa.celular}}</td>
+          <td>{{agendamento.segurado}}</td>
+          <td>{{agendamento.ramo}}</td>
+          <td>{{agendamento.final_vigencia |date:"d/m/y"}}</td>
+          <td>{{agendamento.colaborador}}</td>
+          <td>{{agendamento.inclusao |date:"d/m/y" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+{% endblock %}

@@ -88,17 +88,25 @@ class FrotaForm(forms.ModelForm):
         model = Frota
         fields = ( 'tipo_leve', 'tipo_pesado', 'qnt_itens_seg', 'renovacao_cia', 'final_vigencia',)
 
+
+
+class BemForm(forms.ModelForm):
+
+    class Meta:
+        model = Bem
+        fields = ( 'protocol',)
+
 class AgendamentoForm(forms.ModelForm):
     colaborador = forms.CharField(label='Colaborador', required=False, widget=forms.TextInput(
         attrs={'class':'form-control', 'id':'inputColaborador'}))
     pa = forms.CharField(label='Ponto de Ação', required=False, widget=forms.TextInput(
-        attrs={'class':'form-control', 'id':'inputColaborador'}))
-    inclusao = forms.CharField(label='Inclusão',widget=forms.TextInput(
-        attrs={'type':'date', 'class':'form-control', 'id':'inputInclusao'}))
-    observacao = forms.CharField(label='Ponto de Ação', required=False, widget=forms.TextInput(
+        attrs={'class':'form-control', 'id':'inputPA'}))
+    final_vigencia = forms.CharField(label='Final de Vigência',widget=forms.TextInput(
+        attrs={'type':'date', 'class':'form-control', 'id':'inputAgendamentoFinalVig'}))
+    observacao = forms.CharField(label='Observação', required=False, widget=forms.Textarea(
         attrs={'class':'form-control', 'id':'inputObservacao'}))
 
 
     class Meta:
         model = Agendamento
-        fields = ( 'colaborador', 'pa', 'observacao',)
+        fields = ( 'colaborador', 'pa', 'final_vigencia', 'observacao',)
