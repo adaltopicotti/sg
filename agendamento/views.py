@@ -66,9 +66,7 @@ def cadastro_agendamento(request):
                 ramo_id = Ramo.objects.get(nome=ramoChoice).id
                 coop_pk = cooperativa.pk
                 seg_pk = segurado.pk
-                segToForm = Segurado.objects.get(id=seg_pk)
                 secondaryForm = dataRender['secondaryForm'].save(commit=False)
-                secondaryForm.segurado_id = segToForm.id
                 try:
                     ramo_protocol = "{0}{1}".format(secondarySwitch[3], str(secondaryModel.objects.all().latest('id').id +1))
                 except secondaryModel.DoesNotExist:
