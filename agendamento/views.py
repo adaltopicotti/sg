@@ -69,7 +69,10 @@ def cadastro_agendamento(request):
                 segToForm = Segurado.objects.get(id=seg_pk)
                 secondaryForm = dataRender['secondaryForm'].save(commit=False)
                 secondaryForm.segurado_id = segToForm.id
-                ramo_protocol = "{0}{1}".format(secondarySwitch[3], str(secondaryModel.objects.all().latest('id').id +1))
+                try:
+                    ramo_protocol = "{0}{1}".format(secondarySwitch[3], str(secondaryModel.objects.all().latest('id').id +1))
+                except secondaryModel.DoesNotExist:
+                    ramo_protocol = "{0}{1}".format(secondarySwitch[3], 1)
                 secondaryForm.protocol = ramo_protocol
                 secondaryForm.save()
                 bem_protocol = include_bem(seg_pk, ramo_id, ramo_protocol)
