@@ -13,36 +13,49 @@
   <div class="row justify-content-center">
     <div class="col align-self-center">
       <form method="post" class="post-form" name="agendamento">{% csrf_token %}
-        <fieldset {{primaryFormSet}}>
-        {% include 'agendamento/coop_form.html' %}
-        <!-- Product Selection -->
-        <div class="form-row">
-          <div class="form-group col-md-3">
-            <label for="inputRamo" >Ramo:</label>
-            <select id="inputRamo" class="form-control" name="inputRamo">
-              {% for ramo in ramos %}
-                <option value="{{ramo.nome}}"
+        <!-- Start Collapse Control -->
+        <fieldset id="collapseOne" class="{{primaryFormSet}}">
+          {% include 'agendamento/coop_form.html' %}
+          <!-- Product Selection -->
+          <!-- Validation to include segurado_form -->
+          {% if seguradoForm %}
+            {% include 'agendamento/segurado_form.html' %}
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <label for="inputRamo" >Ramo:</label>
+                <select id="inputRamo" class="form-control" name="inputRamo">
+                  {% for ramo in ramos %}
+                  <option value="{{ramo.nome}}"
                   {% if ramo.nome == ramoChoice %}
-                    selected
+                  selected
                   {% endif %}>{{ramo.nome}}</option>
-                {% endfor %}
-            </select>
-          </div>{{segurado}} -- {{pk}}
-        </div>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          {% endif %}
 
-        {% if seguradoForm %}
-        {% include 'agendamento/segurado_form.html' %}
-        {% endif %}
-
-        <div class="col-md-1">
-          <button class="btn btn-secondary" type="submit">Proximo</button>
-        </div>
+        <!-- Validation to include secondary form (depends of ramo choice) -->
         {% if secondaryForm %}
-
-        {% include "agendamento/"|add:secondaryFormTemplate %}
-        <div class="col-md-1">
-          <button class="btn btn-secondary" type="submit">Cadastrar</button>
-        </div>{{segurado}}
+          <div class="card">
+            <div class="card-header">
+              <strong>Cooperativa:</strong> {{cooperativaForm.cooperativa.value}} - <strong>Agência:</strong> {{cooperativaForm.agencia.value}}
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p><strong>Segurado:</strong> {{seguradoForm.nome.value}}</p>
+              </blockquote>
+            </div>
+          </div>
+          {% include "agendamento/"|add:secondaryFormTemplate %}
+          {% include 'agendamento/agendamento_form.html' %}
+          <div class="col-md-1">
+            <button class="btn btn-secondary" type="submit">Cadastrar</button>
+          </div>
+        {% else %}
+          <div class="col-md-1">
+            <button class="btn btn-secondary" type="submit">Proximo</button>
+          </div>
         {% endif %}
         </fieldset>
       </form>

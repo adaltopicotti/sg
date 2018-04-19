@@ -24,7 +24,7 @@
       <tbody>
         {% for agendamento in agendamentos %}
         <tr>
-          <th scope="row"><a href="">{{agendamento.protocol}}</a></th>
+          <th scope="row"><a href="{% url 'detail_agendamento' protocol=agendamento.protocol %}">{{agendamento.protocol}}</a></th>
           <td>{{agendamento.cooperativa}}</td>
           <td>{{agendamento.cooperativa.solicitante}}</td>
           <td><a href="">{{agendamento.cooperativa.email}}</a></td>

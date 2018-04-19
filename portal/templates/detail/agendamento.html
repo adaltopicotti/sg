@@ -1,0 +1,58 @@
+{% extends 'portal/structure/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="container fixed-midle">
+  <div class="row justify-content-center">
+    <div class="col align-self-center">
+      <div class="dropdown-divider"></div>
+      <h4>Detalhes do Agendamento</h4>
+      <!-- Start cooperativaForm -->{{bem}}
+      <fieldset disabled>
+        <div class="form-row">
+          <div class="form-group col-md-6 col-lg-3">
+            <label for="Protocol">Protocolo:</label>
+            <input class="form-control" value={{agendamento.protocol}}></input>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6 col-lg-5">
+            <label for="Cooperativa">Segurado:</label>
+            <input class="form-control" value={{agendamento.segurado}}></input>
+          </div>
+          <div class="form-group col-md-6 col-lg-3">
+            <label for="Cooperativa">CNPJ:</label>
+            <input class="form-control" value={{agendamento.segurado.cnpj}}></input>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6 col-lg-2">
+            <label for="Cooperativa">Ramo:</label>
+            <input class="form-control" value={{agendamento.bem.ramo}}></input>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6 col-lg-5">
+            <label for="Cooperativa">Cooperativa:</label>
+            <input class="form-control" value={{agendamento.cooperativa}}></input>
+          </div>
+          <div class="form-group col-md-6 col-lg-3">
+            <label for="Cooperativa">Agência:</label>
+            <input class="form-control" value={{agendamento.cooperativa.agencia}}></input>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-3 col-sm-6 col-lg-2">
+            <label for="inputSolTelefone">{{cooperativaForm.telefone.label_tag}}</label>
+            {{cooperativaForm.telefone}}
+          </div>
+          <div class="form-group col-md-3 col-sm-6 col-lg-2">
+            <label for="inputSolCelular">{{cooperativaForm.celular.label_tag}}</label>
+            {{cooperativaForm.celular}}
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

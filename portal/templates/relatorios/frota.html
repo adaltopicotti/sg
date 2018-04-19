@@ -1,14 +1,14 @@
 {% extends 'portal/structure/base.html' %}
 {% load staticfiles %}
 {% block content %}
-<div class="container">
+<div class="fluid-container">
   <div class="row justify-content-md-center">
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">Segurado</th>
-          <th scope="col">Tipo Leve</th>
-          <th scope="col">Tipo Pesado</th>
+          <th scope="col">Protocolo</th>
+          <th scope="col">Veículos Leves</th>
+          <th scope="col">Veículos Pesadoss</th>
           <th scope="col">Itens</th>
           <th scope="col">Renovação CIA</th>
           <th scope="col">Final de Vigência</th>
@@ -17,12 +17,12 @@
       <tbody>
         {% for frota in frotas %}
         <tr>
-          <th scope="row"><a href="">{{frota.segurado}}</a></th>
-          <td>{{frota.tipo_leve}}</td>
-          <td>{{frota.tipo_pesado}}</a></td>
+          <th scope="row"><a href="">{{frota.protocol}}</a></th>
+          <td>{% if frota.tipo_leve == True %} Sim {% else %} Não {% endif %}</td>
+          <td>{% if frota.tipo_pesado == True %} Sim {% else %} Não {% endif %}</a></td>
           <td>{{frota.qnt_itens_seg}}</td>
           <td>{{frota.renovacao_cia}}</td>
-          <td>{{frota.final_vigencia}}</td>
+          <td>{{frota.final_vigencia |date:"d/m/y"}}</td>
         </tr>
         {% endfor %}
       </tbody>

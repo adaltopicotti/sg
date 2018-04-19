@@ -56,7 +56,7 @@ class SeguradoForm(forms.ModelForm):
 class EmpresarialForm(forms.ModelForm):
     atividade = forms.CharField(label='Atividade',widget=forms.TextInput(
         attrs={'class':'form-control', 'id':'inputEmpAtividade'}))
-    qnt_local_risco = forms.CharField(label='Quantidade de Locais de Risco',widget=forms.TextInput(
+    qnt_local_risco = forms.CharField(label='Qnt de Locais de Risco',widget=forms.TextInput(
         attrs={'type':'number', 'class':'form-control', 'id':'inputEmpQntLRisc'}))
     IS = forms.CharField(label='Importância Segurada',widget=forms.TextInput(
         attrs={'type':'number', 'class':'form-control', 'id':'inputEmpIS'}))

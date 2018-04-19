@@ -23,6 +23,8 @@ def cadastro_segurado(request, coopForm):
 def cadastro_agendamento(request):
     ramos = Ramo.objects.all().order_by('nome')
     dataRender = {
+        'primaryFormSet':'',
+        'secondaryFormSet':'',
         'ramoChoice': '',
         'cooperativaForm': CooperativaForm,
         'seguradoForm': '',
@@ -33,10 +35,9 @@ def cadastro_agendamento(request):
     seg_pk = 0
     secondary_pk = 0
     if request.method == "POST":
-        ramoChoice = request.POST['inputRamo']
+
         cooperativaForm = CooperativaForm(request.POST)
         seguradoForm = SeguradoForm(request.POST)
-        secondarySwitch = switch_form(ramoChoice)
         if cooperativaForm.is_valid():
             try:
                 cooperativa = Cooperativa.objects.get(agencia=cooperativaForm['agencia'].value())
@@ -45,17 +46,22 @@ def cadastro_agendamento(request):
                 cooperativaForm.save()
             dataRender['cooperativaForm'] = cooperativaForm
             dataRender['seguradoForm'] = SeguradoForm
-            dataRender['ramoChoice'] = ramoChoice
+
 
         if seguradoForm.is_valid():
             try:
                 segurado = Segurado.objects.get(cnpj=seguradoForm['cnpj'].value())
             except Segurado.DoesNotExist:
                 seguradoForm.save()
+            #dataRender['primaryFormSet'] = 'disabled'
+            ramoChoice = request.POST['inputRamo']
+            secondarySwitch = switch_form(ramoChoice)
+            dataRender['ramoChoice'] = ramoChoice
             dataRender['seguradoForm'] = seguradoForm
             dataRender['agendamentoForm'] = AgendamentoForm
             dataRender['secondaryForm'] = secondarySwitch[1](request.POST)
             dataRender['secondaryFormTemplate'] = secondarySwitch[0]
+            dataRender['primaryFormSet'] = 'collapse'
             secondaryModel = secondarySwitch[2]
 
         if 'secondaryForm' in dataRender.keys():
@@ -107,10 +113,19 @@ def include_agendamento(form, coop_id, seg_id, ramo_id, bem, bem_protocol):
     agendamento.protocol = (bem_protocol)
     agendamento.save()
 
-def cadastro_frota(request, pk):
 
-    return render()
+def detail_agendamento(request, protocol):
+    agendamento = Agendamento.objects.get(protocol=protocol)
+    bem = switch_form(agendamento.bem.ramo.nome)
+    # Será necessário criar duas versões de SecondaryDetail
+    #form = JournalForm(initial={'tank': 123})
+    secondaryModel = bem[2]
 
+
+    return render(request, 'detail/agendamento.html', {
+        'agendamento': agendamento,
+        'secondaryModel': str(secondaryModel)
+    })
 
 def relatorio_cooperativa(request):
     cooperativas = Cooperativa.objects.all().order_by('cooperativa')
@@ -125,7 +140,7 @@ def relatorio_segurado(request):
     })
 
 def relatorio_frota(request):
-    frotas = Frota.objects.all().order_by('segurado')
+    frotas = Frota.objects.all().order_by('protocol')
     return render(request, 'relatorios/frota.html', {
     'frotas': frotas,
     })

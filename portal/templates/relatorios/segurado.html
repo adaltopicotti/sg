@@ -1,7 +1,7 @@
 {% extends 'portal/structure/base.html' %}
 {% load staticfiles %}
 {% block content %}
-<div class="container">
+<div class="fluid-container">
   <div class="row justify-content-md-center">
     <table class="table table-striped">
       <thead>
@@ -16,7 +16,7 @@
       <tbody>
         {% for segurado in segurados %}
         <tr>
-          <th scope="row"><a href="{% url 'cadastro_frota' pk=segurado.pk %}">{{segurado.cnpj}}</a></th>
+          <th scope="row"><a href="">{{segurado.cnpj}}</a></th>
           <td>{{segurado.nome}}</td>
           <td><a href="">{{segurado.email}}</a></td>
           <td>{{segurado.telefone}}</td>
