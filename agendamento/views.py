@@ -10,7 +10,9 @@ def switch_form(argument):
     switcher = {
         "Frota": ["frota_form.html", FrotaForm, Frota, 'FRT'],
         "Empresarial": ["emp_form.html", EmpresarialForm, Empresarial, 'EMP'],
-        "Transporte": ["transp_form.html", '', Transporte, 'TRN'],
+        "Transporte": ["transporte_form.html", TransporteForm, Transporte, 'TRN'],
+        # TODO: Criar form template para Transporte
+        # TODO: Criar form template para Vida
 
     }
     return switcher.get(argument)
@@ -62,6 +64,7 @@ def cadastro_agendamento(request):
             dataRender['secondaryForm'] = secondarySwitch[1](request.POST)
             dataRender['secondaryFormTemplate'] = secondarySwitch[0]
             dataRender['primaryFormSet'] = 'collapse'
+            dataRender['verif'] = str(secondarySwitch[1])
             secondaryModel = secondarySwitch[2]
 
         if 'secondaryForm' in dataRender.keys():
@@ -94,7 +97,7 @@ def include_bem(seg_id, ramo_id, ramo_protocol):
     try:
         bem.protocol = 10111000000 + (Bem.objects.all().latest('id').id +1)
     except Bem.DoesNotExist:
-        bem.protocol =  1011100001
+        bem.protocol = 10111000001
     bem.segurado_id = seg_id
     bem.ramo_id = ramo_id
     bem.ramo_protocol = ramo_protocol
@@ -117,7 +120,7 @@ def include_agendamento(form, coop_id, seg_id, ramo_id, bem, bem_protocol):
 def detail_agendamento(request, protocol):
     agendamento = Agendamento.objects.get(protocol=protocol)
     bem = switch_form(agendamento.bem.ramo.nome)
-    # Será necessário criar duas versões de SecondaryDetail
+    # TODO Será necessário criar duas versões de SecondaryDetail
     #form = JournalForm(initial={'tank': 123})
     secondaryModel = bem[2]
 

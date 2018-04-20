@@ -1,0 +1,70 @@
+
+
+
+<!-- Start Form de Transporte -->
+<div class="dropdown-divider"></div>
+<h4>Transporte</h4>
+<div class="form-row">
+  <label for="inputSegNome"><strong>Tipo de Empresa</strong></label><br>
+</div>
+<div class="form-row align-items-center">
+    <div class="form-group col-1 col-sm-1 col-md-1 col-lg-1">
+      {{secondaryForm.tipo_comum}}
+    </div>
+    <div class="form-group col-3 col-sm-3 col-md-2 col-lg-1">
+      {{secondaryForm.tipo_comum.label}}
+    </div>
+    <div class="form-group col-1 col-sm-1 col-md-1 col-lg-1">
+      {{secondaryForm.tipo_transportadora}}
+    </div>
+    <div class="form-group col-7 col-sm-7 col-md-8 col-lg-9">
+      {{secondaryForm.tipo_transportadora.label}}
+    </div>
+    <div class="form-group col-1 col-sm-1 col-md-1 col-lg-1">
+      {{secondaryForm.tipo_nacional}}
+    </div>
+    <div class="form-group col-3 col-sm-3 col-md-2 col-lg-1">
+      {{secondaryForm.tipo_nacional.label}}
+    </div>
+    <div class="form-group col-1 col-sm-1 col-md-1 col-lg-1">
+      {{secondaryForm.tipo_internacional}}
+    </div>
+    <div class="form-group col-7 col-sm-7 col-md-8 col-lg-9">
+      {{secondaryForm.tipo_internacional.label}}
+    </div>
+</div>
+<div class="form-row">
+  <label for="inputSegNome"><strong>Coberturas</strong></label><br>
+</div>
+<div class="form-row align-items-center">
+    <div class="form-group col-1 col-sm-1 col-md-1 col-lg-1">
+      {{secondaryForm.cobertura_acidente}}
+    </div>
+    <div class="form-group col-3 col-sm-3 col-md-2 col-lg-11">
+      {{secondaryForm.cobertura_acidente.label}}
+    </div>
+    <div class="form-group col-1 col-sm-1 col-md-1 col-lg-1">
+      {{secondaryForm.cobertura_roubo}}
+    </div>
+    <div class="form-group col-7 col-sm-7 col-md-8 col-lg-11">
+      {{secondaryForm.cobertura_roubo.label}}
+    </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-4 col-lg-3">
+    <label for="inputTranspIS">{{secondaryForm.IS.label_tag}}</label>
+    <div class="input-group-prepend">
+      <span class="input-group-text">R$</span>
+      {{secondaryForm.IS}}
+    </div>
+  </div>
+  <div class="form-group col-md-6 col-lg-5">
+    <label for="inputTranspMercadoria">{{secondaryForm.mercadoria_transportada.label_tag}}</label>
+    {{secondaryForm.mercadoria_transportada}}
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6 col-lg-4">
+    <label for="inputFrotaRenovacaoCia">{{secondaryForm.renovacao_cia.label_tag}}</label>
+    {{secondaryForm.renovacao_cia}}
+  </div>

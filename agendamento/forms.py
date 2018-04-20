@@ -62,18 +62,16 @@ class EmpresarialForm(forms.ModelForm):
         attrs={'type':'number', 'class':'form-control', 'id':'inputEmpIS'}))
     renovacao_cia = forms.CharField(label='Renovação - Seguradora',widget=forms.TextInput(
         attrs={'class':'form-control', 'id':'inputEmpRenovacaoCia'}))
-    final_vigencia = forms.CharField(label='Final de Vigência',widget=forms.TextInput(
-        attrs={'type':'date', 'class':'form-control', 'id':'inputEmpFinalVig'}))
 
     class Meta:
         model = Empresarial
-        fields = ('atividade', 'qnt_local_risco', 'IS', 'renovacao_cia', 'final_vigencia')
+        fields = ('atividade', 'qnt_local_risco', 'IS', 'renovacao_cia',)
 
 
 class FrotaForm(forms.ModelForm):
-    tipo_leve = forms.CharField(label='Leve', required=False, widget=forms.CheckboxInput(
+    tipo_leve = forms.BooleanField(label='Leve', required=False, widget=forms.CheckboxInput(
     attrs={'class':'form-control'}))
-    tipo_pesado = forms.CharField(label='Pesado', required=False, widget=forms.CheckboxInput(
+    tipo_pesado = forms.BooleanField(label='Pesado', required=False, widget=forms.CheckboxInput(
     attrs={'class':'form-control'}))
 
     qnt_itens_seg = forms.CharField(label='Quantidade de Itens',widget=forms.TextInput(
@@ -87,6 +85,41 @@ class FrotaForm(forms.ModelForm):
     class Meta:
         model = Frota
         fields = ( 'tipo_leve', 'tipo_pesado', 'qnt_itens_seg', 'renovacao_cia', 'final_vigencia',)
+
+
+class TransporteForm(forms.ModelForm):
+    tipo_comum = forms.BooleanField(label='Comum', required=False, widget=forms.CheckboxInput(
+    attrs={'class':'form-control'}))
+    tipo_transportadora = forms.BooleanField(label='Transportadora', required=False, widget=forms.CheckboxInput(
+    attrs={'class':'form-control'}))
+    tipo_nacional = forms.BooleanField(label='Nacional', required=False, widget=forms.CheckboxInput(
+    attrs={'class':'form-control'}))
+    tipo_internacional = forms.BooleanField(label='Internacional', required=False, widget=forms.CheckboxInput(
+    attrs={'class':'form-control'}))
+    cobertura_acidente = forms.BooleanField(label='Acidente', required=False, widget=forms.CheckboxInput(
+    attrs={'class':'form-control'}))
+    cobertura_roubo = forms.BooleanField(label='Roubo', required=False, widget=forms.CheckboxInput(
+    attrs={'class':'form-control'}))
+    IS = forms.CharField(label='Importância Segurada',widget=forms.TextInput(
+        attrs={'type':'number', 'class':'form-control', 'id':'inputTranspIS'}))
+    mercadoria_transportada = forms.CharField(label='Mercadoria Transportada',widget=forms.TextInput(
+        attrs={'class':'form-control', 'id':'inputTranspMercadoria'}))
+    renovacao_cia = forms.CharField(label='Renovação - Seguradora',widget=forms.TextInput(
+        attrs={'class':'form-control', 'id':'inputTranspRenovacaoCia'}))
+
+
+    class Meta:
+        model = Transporte
+        fields = (
+            'tipo_transportadora',
+            'tipo_comum',
+            'tipo_nacional',
+            'tipo_internacional',
+            'cobertura_acidente',
+            'cobertura_acidente',
+            'IS',
+            'mercadoria_transportada',
+            'renovacao_cia')
 
 
 

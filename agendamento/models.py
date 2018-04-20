@@ -36,6 +36,8 @@ class Ramo(models.Model):
         ('Empresarial', 'Empresarial',),
         ('Vida', 'Vida',),
         ('Frota', 'Frota',),
+        ('Transporte', 'Transporte',),
+        ('Vida', 'Vida',),
     )
     nome = models.CharField(max_length=20, choices=TYPE_CHOICES)
 
@@ -108,12 +110,19 @@ class TransporteCobertura(models.Model):
         return self.name
 
 class Transporte(models.Model):
-    tipo_empresa = models.ManyToManyField(TransporteTipo)
-    cobertura = models.ManyToManyField(TransporteCobertura)
+    protocol = models.CharField(max_length=20)
+    tipo_comum = models.BooleanField(blank=True, default=False)
+    tipo_transportadora = models.BooleanField(blank=True, default=False)
+    tipo_nacional = models.BooleanField(blank=True, default=False)
+    tipo_internacional = models.BooleanField(blank=True, default=False)
+    cobertura_acidente = models.BooleanField(blank=True, default=False)
+    cobertura_roubo = models.BooleanField(blank=True, default=False)
     IS = models.FloatField(null=False)
     mercadoria_transportada = models.CharField(max_length=200, null=False)
     renovacao_cia = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.protocol
 
 class Produto(models.Model):
     ramo = models.ForeignKey(Ramo, on_delete=models.CASCADE)
