@@ -4,7 +4,7 @@ from .models import *
 class CooperativaForm(forms.ModelForm):
 
     cooperativa = forms.CharField(label='Cooperativa',widget=forms.TextInput(
-        attrs={'class':'form-control', 'id':'inputCooperativa'}))
+        attrs={'class':'form-control', 'id':'inputCooperativa',}))
     agencia = forms.CharField(label='Agência',widget=forms.TextInput(
         attrs={'type':'text', 'class':'form-control', 'id':'inputAgencia'}))
     solicitante = forms.CharField(label='Solicitante',widget=forms.TextInput(
@@ -41,7 +41,7 @@ class SeguradoForm(forms.ModelForm):
     celular = forms.CharField(label='Celular',widget=forms.TextInput(
         attrs={'class':'form-control', 'id':'inputSegCelular'}))
     cnpj = forms.CharField(label='CNPJ',widget=forms.TextInput(
-        attrs={'class':'form-control', 'id':'inputSegCNPJ'}))
+        attrs={'class':'form-control', 'id':'inputSegCNPJ', 'autofocus':'autofocus' }))
     endereco = forms.CharField(label='Endereço',widget=forms.TextInput(
         attrs={'class':'form-control', 'id':'inputSegEndereco'}))
     municipio = forms.CharField(label='Municipio',widget=forms.TextInput(
@@ -55,7 +55,7 @@ class SeguradoForm(forms.ModelForm):
 
 class EmpresarialForm(forms.ModelForm):
     atividade = forms.CharField(label='Atividade',widget=forms.TextInput(
-        attrs={'class':'form-control', 'id':'inputEmpAtividade'}))
+        attrs={'class':'form-control', 'id':'inputEmpAtividade', 'autofocus':'autofocus'}))
     qnt_local_risco = forms.CharField(label='Qnt de Locais de Risco',widget=forms.TextInput(
         attrs={'type':'number', 'class':'form-control', 'id':'inputEmpQntLRisc'}))
     IS = forms.CharField(label='Importância Segurada',widget=forms.TextInput(
@@ -139,7 +139,26 @@ class AgendamentoForm(forms.ModelForm):
     observacao = forms.CharField(label='Observação', required=False, widget=forms.Textarea(
         attrs={'class':'form-control', 'id':'inputObservacao'}))
 
-
     class Meta:
         model = Agendamento
         fields = ( 'colaborador', 'pa', 'final_vigencia', 'observacao',)
+
+
+class VidaForm(forms.ModelForm):
+    TYPE_CHOICES = (
+        ('GLOBAL', 'Global',),
+        ('ESPECIFICA', 'Específica',),
+    )
+    tipo = forms.CharField(label='Tipo', widget=forms.Select(choices=TYPE_CHOICES,
+        attrs={'class':'form-control', 'id':'inputColaborador'} ))
+    IS = forms.DecimalField(label='Importância Segurada',widget=forms.NumberInput(
+        attrs={'class':'form-control', 'id':'inputVidaIS'}))
+    atividade_empresa = forms.CharField(label='Atividade da Empresa',widget=forms.TextInput(
+        attrs={'class':'form-control', 'id':'inputAtividadeEmpresa'}))
+    qnt_vida_seg = forms.CharField(label='Quantidade de Vida',widget=forms.TextInput(
+        attrs={'type':'number', 'class':'form-control', 'id':'inputVidaQnt'}))
+    renovacao_cia = forms.CharField(label='Renovação - Seguradora',widget=forms.TextInput(
+        attrs={'class':'form-control', 'id':'inputVidaRenovacaoCia'}))
+    class Meta:
+        model = Vida
+        fields = ('tipo', 'IS', 'atividade_empresa', 'qnt_vida_seg','renovacao_cia')

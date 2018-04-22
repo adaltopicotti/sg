@@ -37,34 +37,34 @@ class Ramo(models.Model):
         ('Vida', 'Vida',),
         ('Frota', 'Frota',),
         ('Transporte', 'Transporte',),
-        ('Vida', 'Vida',),
     )
-    nome = models.CharField(max_length=20, choices=TYPE_CHOICES)
+    nome = models.CharField(max_length=20, choices=TYPE_CHOICES, unique=True)
 
     def __str__(self):
         return self.nome
 
 class Empresarial(models.Model):
-    protocol = models.TextField(max_length=20, null=False)
+    protocol = models.CharField(max_length=20, null=False)
     atividade = models.CharField(max_length=200, null=False)
     qnt_local_risco = models.IntegerField(null=False)
     IS = models.FloatField(null=False)
     renovacao_cia = models.CharField(max_length=200)
-    final_vigencia = models.DateField(("Date"), null=False )
     def __str__(self):
         return self.protocol
 
-class VidaGrupo(models.Model):
+class Vida(models.Model):
     TYPE_CHOICES = (
         ('GLOBAL', 'Global',),
         ('ESPECIFICA', 'Específica',),
     )
+    protocol = models.CharField(max_length=20, null=False)
     tipo = models.CharField(max_length=20, choices=TYPE_CHOICES)
-    IS = models.FloatField(null=False)
-    atividade = models.CharField(max_length=200, null=False)
+    IS = models.DecimalField(null=False, max_digits=15, decimal_places=2)
+    atividade_empresa = models.CharField(max_length=200, null=False)
     qnt_vida_seg = models.IntegerField(null=False)
     renovacao_cia = models.CharField(max_length=200)
-    final_vigencia = models.DateField(("Date"), null=False )
+    def __str__(self):
+        return self.protocol
 
 class VeiculoTipo(models.Model):
     CHOICES = (
@@ -82,7 +82,6 @@ class Frota(models.Model):
     tipo_pesado = models.BooleanField(blank=True, default=False)
     qnt_itens_seg = models.IntegerField(null=False)
     renovacao_cia = models.CharField(max_length=200)
-    final_vigencia = models.DateField(("Date"), null=False)
     def __str__(self):
         return self.protocol
 

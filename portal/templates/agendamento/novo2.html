@@ -38,6 +38,7 @@
 
         <!-- Validation to include secondary form (depends of ramo choice) -->
         {% if secondaryForm %}
+        <div class="col-lg-8">
           <div class="card">
             <div class="card-header">
               <strong>Cooperativa:</strong> {{cooperativaForm.cooperativa.value}} - <strong>Agência:</strong> {{cooperativaForm.agencia.value}}
@@ -48,6 +49,8 @@
               </blockquote>
             </div>
           </div>
+          <div class="dropdown-divider"></div>
+        </div>
           {% include "agendamento/"|add:secondaryFormTemplate %}
           {% include 'agendamento/agendamento_form.html' %}
           <div class="col-md-1">

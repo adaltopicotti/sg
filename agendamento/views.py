@@ -5,15 +5,19 @@ from agendamento.forms import *
 from agendamento.models import *
 # Create your views here.
 
+# TO DO
+
+# TODO: Incluir agenda de ações realizadas  no Agendamento Detail
+# TODO: Visualização de Agendamento, tentar utilizando tables
+# TODO: Criar link no relatorio (frota, empresarial, transporte, vida) para indicar o segurado ou agendamento
+# END TO DO
 
 def switch_form(argument):
     switcher = {
         "Frota": ["frota_form.html", FrotaForm, Frota, 'FRT'],
         "Empresarial": ["emp_form.html", EmpresarialForm, Empresarial, 'EMP'],
         "Transporte": ["transporte_form.html", TransporteForm, Transporte, 'TRN'],
-        # TODO: Criar form template para Transporte
-        # TODO: Criar form template para Vida
-
+        "Vida": ["vida_form.html", VidaForm, Vida, 'VID'],
     }
     return switcher.get(argument)
 
@@ -87,7 +91,6 @@ def cadastro_agendamento(request):
                 if agendamentoForm.is_valid():
                     include_agendamento(agendamentoForm, coop_pk, seg_pk, ramo_id, bem,  bem_protocol)
                     dataRender['agendamentoForm'] = agendamentoForm
-
     return render(request, 'agendamento/novo2.html', dataRender)
 
 

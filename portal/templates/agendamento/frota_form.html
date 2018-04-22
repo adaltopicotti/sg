@@ -2,28 +2,32 @@
 
 
 <!-- Start secondaryForm -->
-<div class="dropdown-divider"></div>
+
 <h4>Frota</h4>
 <div class="form-row">
   <label for="inputSegNome"><strong>Tipo de veículo</strong></label><br>
 </div>
 <div class="form-row">
 
-  <div class="form-group col-md-1 col-sm-6">
-    <label for="inputTipoLeve">{{secondaryForm.tipo_leve.label_tag}}</label>
+  <div class="form-group col-1 col-sm-1 col-md-1 col-lg-1">
     {{secondaryForm.tipo_leve}}
   </div>
-  <div class="form-group col-md-1 col-sm-6">
-    <label for="inputTipoPesado">{{secondaryForm.tipo_pesado.label_tag}}</label>
+  <div class="form-group col-3 col-sm-3 col-md-2 col-lg-1">
+    {{secondaryForm.tipo_leve.label}}
+  </div>
+  <div class="form-group col-1 col-sm-1 col-md-1 col-lg-1">
     {{secondaryForm.tipo_pesado}}
   </div>
-  <div class="form-group col-md-2">
+  <div class="form-group col-7 col-sm-7 col-md-8 col-lg-9">
+    {{secondaryForm.tipo_pesado.label}}
+  </div>
+  <div class="form-group col-md-3 col-lg-3">
     <label for="inputFrotaQntItem">{{secondaryForm.qnt_itens_seg.label_tag}}</label>
     {{secondaryForm.qnt_itens_seg}}
   </div>
 </div>
 <div class="form-row">
-  <div class="form-group col-md-5">
+  <div class="form-group col-md-6 col-lg-4">
     <label for="inputFrotaRenovacaoCia">{{secondaryForm.renovacao_cia.label_tag}}</label>
     {{secondaryForm.renovacao_cia}}
   </div>
