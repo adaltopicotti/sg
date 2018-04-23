@@ -5,53 +5,43 @@
   <div class="row justify-content-center">
     <div class="col align-self-center">
       <div class="dropdown-divider"></div>
-      <h4>Detalhes do Agendamento</h4>
+      <h4></h4>
       <!-- Start cooperativaForm -->{{bem}}
       <!-- TODO: Verificar possibilidade de fazer os detalhes na table -->
-      <fieldset disabled>
-        <div class="form-row">
-          <div class="form-group col-md-6 col-lg-3">
-            <label for="Protocol">Protocolo:</label>
-            <input class="form-control" value={{agendamento.protocol}}></input>
+      <div class="card">
+        <div class="card-header">Detalhes do Agendamento</div>
+
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <!-- First row -->
+          <div class="row">
+            <div class="col w-25 p-3 border-left border-right" style="background-color: #1CB7D3;">Protocolo</div>
+            <div class="col w-25 p-3 border-right" style="background-color: #1CB7D3;">Cooperativa</div>
+            <div class="col w-25 p-3 border-right" style="background-color: #1CB7D3;">Agência</div>
+            <div class="col w-25 p-3 border-right" style="background-color: #1CB7D3;">Inclusão</div>
+          </div>
+          <div class="row">
+            <div class="col w-25 p-3 border-left border-right" style="background-color: #fff;">{{agendamento.protocol}}</div>
+            <div class="col w-25 p-3 border-right" style="background-color: #fff;">{{agendamento.cooperativa}}</div>
+            <div class="col w-25 p-3 border-right" style="background-color: #fff;">{{agendamento.cooperativa.agencia}}</div>
+            <div class="col w-25 p-3 border-right" style="background-color: #fff;">{{agendamento.inclusao|date:"d/m/Y"}}</div>
+          </div>
+          <!-- Second row -->
+          <div class="row">
+            <div class="col w-50 p-3 border-left border-right" style="background-color: #1CB7D3;">Solicitante</div>
+            <div class="col w-25 p-3 border-right" style="background-color: #1CB7D3;">E-mail</div>
+            <div class="col w-25 p-3 border-right" style="background-color: #1CB7D3;">Telefone</div>
+            <div class="col w-25 p-3 border-right" style="background-color: #1CB7D3;">Celular</div>
+          </div>
+          <div class="row">
+            <div class="col w-50 p-3 border-left border-right" style="background-color: #fff;">{{agendamento.cooperativa.solicitante}}</div>
+            <div class="col w-25 p-3 border-right" style="background-color: #fff;">{{agendamento.cooperativa.email}}</div>
+            <div class="col w-25 p-3 border-right" style="background-color: #fff;">{{agendamento.cooperativa.telefone}}</div>
+            <div class="col w-25 p-3 border-right" style="background-color: #fff;">{{agendamento.cooperativa.celular}}</div>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-6 col-lg-5">
-            <label for="Cooperativa">Segurado:</label>
-            <input class="form-control" value={{agendamento.segurado}}></input>
-          </div>
-          <div class="form-group col-md-6 col-lg-3">
-            <label for="Cooperativa">CNPJ:</label>
-            <input class="form-control" value={{agendamento.segurado.cnpj}}></input>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6 col-lg-2">
-            <label for="Cooperativa">Ramo:</label>
-            <input class="form-control" value={{agendamento.bem.ramo}}></input>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6 col-lg-5">
-            <label for="Cooperativa">Cooperativa:</label>
-            <input class="form-control" value={{agendamento.cooperativa}}></input>
-          </div>
-          <div class="form-group col-md-6 col-lg-3">
-            <label for="Cooperativa">Agência:</label>
-            <input class="form-control" value={{agendamento.cooperativa.agencia}}></input>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-3 col-sm-6 col-lg-2">
-            <label for="inputSolTelefone">{{cooperativaForm.telefone.label_tag}}</label>
-            {{cooperativaForm.telefone}}
-          </div>
-          <div class="form-group col-md-3 col-sm-6 col-lg-2">
-            <label for="inputSolCelular">{{cooperativaForm.celular.label_tag}}</label>
-            {{cooperativaForm.celular}}
-          </div>
-        </div>
-      </fieldset>
+      </div>
     </div>
   </div>
 </div>
