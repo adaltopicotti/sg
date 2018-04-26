@@ -24,7 +24,7 @@ class Segurado(models.Model):
     telefone = models.CharField(max_length=50, null=True)
     celular = models.CharField(max_length=50, null=True)
     cnpj = models.CharField(max_length=14, null=False )
-
+    cep = models.CharField(max_length=10, null=False)
     endereco = models.CharField(max_length=200, null= False)
     municipio = models.CharField(max_length=100, null=False)
 
