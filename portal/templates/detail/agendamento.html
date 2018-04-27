@@ -15,86 +15,90 @@
       <div class="card">
         <div class="card-body">
           <!-- First row -->
-          <div class="row">
-            <div class="col-lg-2 w-25 p-3 border-left border-right" style="background-color: #1CB7D3;">Protocolo</div>
-            <div class="col-lg-5 w-25 p-3 border-right" style="background-color: #1CB7D3;">Cooperativa</div>
-            <div class="col-lg-3 w-25 p-3 border-right" style="background-color: #1CB7D3;">Agência</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #1CB7D3;">Inclusão</div>
+          <div class="row align-items-center" style="height: 25px; background-color: #1CB7D3;">
+            <div class="col-lg-2 w-25 p-3 border-left border-right">Protocolo</div>
+            <div class="col-lg-5 w-25 p-3 border-right">Cooperativa</div>
+            <div class="col-lg-3 w-25 p-3 border-right">Agência</div>
+            <div class="col w-25 p-3 border-right">Inclusão</div>
           </div>
-          <div class="row">
+          <div class="row align-items-end">
             <div class="col-lg-2 w-25 p-3 border-left border-right" style="background-color: #fff;">{{agendamento.protocol}}</div>
-            <div class="col-lg-5 w-25 p-3 border-right" style="background-color: #fff;">{{agendamento.cooperativa}}</div>
-            <div class="col-lg-3 w-25 p-3 border-right" style="background-color: #fff;">{{agendamento.cooperativa.agencia}}</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #fff;">{{agendamento.inclusao|date:"d/m/Y"}}</div>
+            <div class="col-lg-5 w-25 p-3 border-right">{{agendamento.cooperativa}}</div>
+            <div class="col-lg-3 w-25 p-3 border-right">{{agendamento.cooperativa.agencia}}</div>
+            <div class="col w-25 p-3 border-right">{{agendamento.inclusao|date:"d/m/Y"}}</div>
           </div>
           <!-- Second row -->
-          <div class="row">
-            <div class="col-lg-5 w-50 p-3 border-left border-right" style="background-color: #1CB7D3;">Solicitante</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #1CB7D3;">E-mail</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #1CB7D3;">Telefone</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #1CB7D3;">Celular</div>
+          <div class="row align-items-center" style="height: 25px; background-color: #1CB7D3;">
+            <div class="col-lg-5 w-50 p-3 border-left border-right">Solicitante</div>
+            <div class="col w-25 p-3 border-right">E-mail</div>
+            <div class="col w-25 p-3 border-right">Telefone</div>
+            <div class="col w-25 p-3 border-right">Celular</div>
           </div>
           <div class="row">
-            <div class="col-lg-5 w-50 p-3 border-left border-right" style="background-color: #fff;">{{agendamento.cooperativa.solicitante}}</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #fff;">{{agendamento.cooperativa.email}}</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #fff;">{{agendamento.cooperativa.telefone}}</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #fff;">{{agendamento.cooperativa.celular}}</div>
+            <div class="col-lg-5 w-50 p-3 border-left border-right">{{agendamento.cooperativa.solicitante}}</div>
+            <div class="col w-25 p-3 border-right">{{agendamento.cooperativa.email}}</div>
+            <div class="col w-25 p-3 border-right">{{agendamento.cooperativa.telefone}}</div>
+            <div class="col w-25 p-3 border-right">{{agendamento.cooperativa.celular}}</div>
           </div>
           <!-- SEGURADO -->
-          <div class="row">
+          <div class="row align-items-center">
             <div class="col p-3 border-left border-right text-center" style="background-color: #3550EB;"><strong>SEGURADO</strong></div>
           </div>
-          <div class="row">
-            <div class="col-lg-8 w-50 p-3 border-left border-right" style="background-color: #1CB7D3;">Nome</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #1CB7D3;">CNPJ</div>
+          <div class="row align-items-center" style="height: 25px; background-color: #1CB7D3;">
+            <div class="col-lg-8 w-50 p-3 border-left border-right">Nome</div>
+            <div class="col w-25 p-3 border-right">CNPJ</div>
           </div>
           <div class="row">
-            <div class="col-lg-8 w-50 p-3 border-left border-right" style="background-color: #fff;">{{agendamento.segurado.nome}}</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #fff;">{{agendamento.segurado.cnpj}}</div>
+            <div class="col-lg-8 w-50 p-3 border-left border-right">{{agendamento.segurado.nome}}</div>
+            <div class="col w-25 p-3 border-right">{{agendamento.segurado.cnpj}}</div>
+          </div>
+          <div class="row align-items-center" style="height: 25px; background-color: #1CB7D3;">
+            <div class="col-lg-6 w-50 p-3 border-left border-right">E-mail</div>
+            <div class="col w-25 p-3 border-right">Telefone</div>
+            <div class="col w-25 p-3 border-right">Celular</div>
           </div>
           <div class="row">
-            <div class="col-lg-6 w-50 p-3 border-left border-right" style="background-color: #1CB7D3;">E-mail</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #1CB7D3;">Telefone</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #1CB7D3;">Celular</div>
+            <div class="col-lg-6 w-50 p-3 border-left border-right">{{agendamento.segurado.email}}</div>
+            <div class="col w-25 p-3 border-right">{{agendamento.segurado.telefone}}</div>
+            <div class="col w-25 p-3 border-right">{{agendamento.segurado.celular}}</div>
+          </div>
+          <div class="row align-items-center" style="height: 25px; background-color: #1CB7D3;">
+            <div class="col-lg-2 w-50 p-3 border-left border-right">CEP</div>
+            <div class="col-lg-6 w-50 p-3 border-right">Endereço</div>
+            <div class="col w-25 p-3 border-right">Município</div>
           </div>
           <div class="row">
-            <div class="col-lg-6 w-50 p-3 border-left border-right" style="background-color: #fff;">{{agendamento.segurado.email}}</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #fff;">{{agendamento.segurado.telefone}}</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #fff;">{{agendamento.segurado.celular}}</div>
-          </div>
-          <div class="row">
-            <div class="col-lg-2 w-50 p-3 border-left border-right" style="background-color: #1CB7D3;">CEP</div>
-            <div class="col-lg-6 w-50 p-3 border-right" style="background-color: #1CB7D3;">Endereço</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #1CB7D3;">Município</div>
-          </div>
-          <div class="row">
-            <div class="col-lg-2 w-50 p-3 border-left border-right" style="background-color: #fff;">{{agendamento.segurado.cep}}</div>
-            <div class="col-lg-6 w-50 p-3 border-right" style="background-color: #fff;">{{agendamento.segurado.endereco}}</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #fff;">{{agendamento.segurado.municipio}}</div>
+            <div class="col-lg-2 w-50 p-3 border-left border-right">{{agendamento.segurado.cep}}</div>
+            <div class="col-lg-6 w-50 p-3 border-right">{{agendamento.segurado.endereco}}</div>
+            <div class="col w-25 p-3 border-right">{{agendamento.segurado.municipio}}</div>
           </div>
           <!-- FROTA -->
-          <div class="row">
-            <div class="col p-3 border-left border-right text-center" style="background-color: #3550EB;"><strong>Bem Segurado</strong></div>
+        </div>
+          <div class="card-header align-items-start">
+            Bem Segurado
           </div>
-          <div class="row">
-            <div class="col-lg-4" style="background-color: #1CB7D3;">
+          <div class="row align-items-center" style="height: 25px; background-color: #1CB7D3;">
+            <div class="col-lg-4">
               <div class="row">
-                <div class="col-lg-6 w-50 p-3 border-left border-right" style="background-color: #1CB7D3;">Veículos Leve</div>
-                <div class="col-lg-6 w-50 p-3 border-left border-right" style="background-color: #1CB7D3;">Veículos Pesados</div>
+                <div class="col-lg-6 w-50 p-3 border-left border-right">Veículos Leve</div>
+                <div class="col-lg-6 w-50 p-3 border-left border-right">Veículos Pesados</div>
               </div>
             </div>
-            <div class="col-lg-2 w-50 p-3 border-left border-right" style="background-color: #1CB7D3;">Quantidade de Itens</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #1CB7D3;">Vigência</div>
-            <div class="col-lg-4 w-25 p-3 border-right" style="background-color: #1CB7D3;">Renovação CIA</div>
+            <div class="col-lg-2 w-50 p-3 border-left border-right">Quantidade de Itens</div>
+            <div class="col w-25 p-3 border-right">Vigência</div>
+            <div class="col-lg-4 w-25 p-3 border-right">Renovação CIA</div>
           </div>
           <div class="row">
-            <div class="col-lg-2 w-50 p-3 border-left border-right" style="background-color: #fff;">Sim</div>
-            <div class="col-lg-2 w-25 p-3 border-right" style="background-color: #fff;">Sim</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #fff;">2</div>
-            <div class="col w-25 p-3 border-right" style="background-color: #fff;">25/08/2018</div>
-            <div class="col-lg-4 w-25 p-3 border-right" style="background-color: #ff;">Bradesco</div>
+            <div class="col-lg-2 w-50 p-3 border-left border-right border-bottom">{% if secondaryModel.tipo_leve == True %} Sim {% else %} Não {% endif %}</div>
+            <div class="col-lg-2 w-25 p-3 border-right border-bottom">{% if secondaryModel.tipo_pesado == True %} Sim {% else %} Não {% endif %}</div>
+            <div class="col w-25 p-3 border-right border-bottom">{{secondaryModel.qnt_itens_seg}}</div>
+            <div class="col w-25 p-3 border-right border-bottom">{{agendamento.final_vigencia | date:'d/m/Y'}}</div>
+            <div class="col-lg-4 w-25 p-3 border-right border-bottom">{{secondaryModel.renovacao_cia}}</div>
           </div>
         </div>
+      </div>
+      <div class="card">
+        <div class='card-header'>Agenda</div>
       </div>
     </div>
   </div>

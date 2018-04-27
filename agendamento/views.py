@@ -125,12 +125,12 @@ def detail_agendamento(request, protocol):
     bem = switch_form(agendamento.bem.ramo.nome)
     # TODO Será necessário criar duas versões de SecondaryDetail
     #form = JournalForm(initial={'tank': 123})
-    secondaryModel = bem[2]
+    secondaryModel = bem[2].objects.get(protocol=agendamento.bem.ramo_protocol)
 
 
     return render(request, 'detail/agendamento.html', {
         'agendamento': agendamento,
-        'secondaryModel': str(secondaryModel)
+        'secondaryModel': secondaryModel
     })
 
 def relatorio_cooperativa(request):
