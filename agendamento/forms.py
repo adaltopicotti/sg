@@ -162,3 +162,9 @@ class VidaForm(forms.ModelForm):
     class Meta:
         model = Vida
         fields = ('tipo', 'IS', 'atividade_empresa', 'qnt_vida_seg','renovacao_cia')
+
+class AgendamentoPostForm(forms.ModelForm):
+
+    class Meta:
+        model = AgendamentoPost
+        fields = ('text',)

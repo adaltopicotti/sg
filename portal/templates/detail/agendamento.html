@@ -98,12 +98,20 @@
         </div>
       </div>
       <div class="card">
-        <div class='card-header'>Agenda</div>
+        <div class='card-header'>Agenda -
+            <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content='<form><input type="text"/></form>'>Dismissible popover</a>
+        </div>
         <div class="card-body">
-          <blockquote class="blockquote mb-0">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-          </blockquote>
+        {% for agendamentoPost in agendamentoPosts %}
+          <div class="card">
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p>{{agendamentoPost.text}}</p>
+                <footer class="blockquote-footer">{{agendamentoPost.author.first_name}} {{agendamentoPost.author.last_name}}, em: <cite title="Source Title">{{agendamentoPost.created_date}}</cite></footer>
+              </blockquote>
+            </div>
+          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
