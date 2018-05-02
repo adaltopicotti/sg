@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 # Create your models here. s
 
 
@@ -153,3 +153,14 @@ class Agendamento(models.Model):
 
     def __str__(self):
         return self.protocol
+
+
+class AgendamentoPost(models.Model):
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    agendamento = models.ForeignKey(Agendamento, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_date = models.DateTimeField(
+            default=timezone.now)
+
+    def __str__(self):
+        return self.agendamento
