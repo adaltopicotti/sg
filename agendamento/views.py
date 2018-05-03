@@ -128,6 +128,14 @@ def detail_agendamento(request, protocol):
     secondaryModel = bem[2].objects.get(protocol=agendamento.bem.ramo_protocol)
     agendamentoPost = AgendamentoPost.objects.all()
     agendamentoPostForm = AgendamentoPostForm
+    if request.method == "POST":
+        form = agendamentoPostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.agendamento = agendamento
+            post.author = request.user
+            post.save()
+            agendamentoPostForm = AgendamentoPostForm
     return render(request, 'detail/agendamento.html', {
         'agendamento': agendamento,
         'secondaryModel': secondaryModel,
