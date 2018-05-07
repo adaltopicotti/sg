@@ -42,6 +42,8 @@ class SeguradoForm(forms.ModelForm):
         attrs={'class':'form-control', 'id':'inputSegCelular'}))
     cnpj = forms.CharField(label='CNPJ',widget=forms.TextInput(
         attrs={'class':'form-control', 'id':'inputSegCNPJ', 'autofocus':'autofocus' }))
+    cep = forms.CharField(label='CEP',widget=forms.TextInput(
+        attrs={'class':'form-control', 'id':'inputSegCEP'}))
     endereco = forms.CharField(label='Endereço',widget=forms.TextInput(
         attrs={'class':'form-control', 'id':'inputSegEndereco'}))
     municipio = forms.CharField(label='Municipio',widget=forms.TextInput(
@@ -49,7 +51,7 @@ class SeguradoForm(forms.ModelForm):
 
     class Meta:
         model = Segurado
-        fields = ('nome', 'email','telefone', 'celular', 'cnpj', 'endereco', 'municipio',)
+        fields = ('nome', 'email','telefone', 'celular', 'cnpj', 'cep', 'endereco', 'municipio',)
 
 
 

@@ -126,7 +126,7 @@ def detail_agendamento(request, protocol):
     # TODO Será necessário criar duas versões de SecondaryDetail
     #form = JournalForm(initial={'tank': 123})
     secondaryModel = bem[2].objects.get(protocol=agendamento.bem.ramo_protocol)
-    agendamentoPost = AgendamentoPost.objects.all()
+    agendamentoPost = AgendamentoPost.objects.filter(agendamento=agendamento)
     agendamentoPostForm = AgendamentoPostForm
     if request.method == "POST":
         form = agendamentoPostForm(request.POST)

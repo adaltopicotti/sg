@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-header align-items-start"><h5>Bem Segurado</h5></div>
+  <div class="card-body">
+    <div class="row align-items-start" style="height: 25px; background-color: #1CB7D3;">
+      <div class="col-lg-4">
+        <div class="row">
+          <div class="col-lg-6 w-50 p-1 border-left">Veículos Leve</div>
+          <div class="col-lg-6 w-50 p-1 border-left">Veículos Pesados</div>
+        </div>
+      </div>
+      <div class="col-lg-2 w-50 p-1 border-left">Quantidade de Itens</div>
+      <div class="col w-25 p-1 border-left">Vigência</div>
+      <div class="col-lg-4 w-25 p-1 border-left border-right">Renovação CIA</div>
+    </div>
+    <div class="row align-items-center" style="height: 35px;">
+      <div class="col-lg-2 w-50 p-1 border-left border-bottom">{% if secondaryModel.tipo_leve == True %} Sim {% else %} Não {% endif %}</div>
+      <div class="col-lg-2 w-25 p-1 border-left border-bottom">{% if secondaryModel.tipo_pesado == True %} Sim {% else %} Não {% endif %}</div>
+      <div class="col w-25 p-1 border-left border-bottom">{{secondaryModel.qnt_itens_seg}}</div>
+      <div class="col w-25 p-1 border-left border-bottom">{{agendamento.final_vigencia | date:'d/m/Y'}}</div>
+      <div class="col-lg-4 w-25 p-1 border-left border-right border-bottom">{{secondaryModel.renovacao_cia}}</div>
+    </div>
+  </div>
+</div>
