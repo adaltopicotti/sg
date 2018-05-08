@@ -12,6 +12,11 @@ from agendamento.models import *
 # TODO: Criar link no relatorio (frota, empresarial, transporte, vida) para indicar o segurado ou agendamento
 # END TO DO
 
+
+def teste(request):
+    return render(request, 'portal/structure/teste.html', {
+    })
+
 def switch_form(argument):
     switcher = {
         "Frota": ["frota_form.html", FrotaForm, Frota, 'FRT'],
