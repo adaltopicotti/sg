@@ -19,7 +19,7 @@ def validate(request):
         form.login = request.GET['login']
         form.password = request.GET['password']
         form.token = request.GET['token']
-        valid_user = ValidateLogin.objects.filter(login=form.login)
+        valid_user = ValidateLogin.objects.get(login=form.login)
         responseData = {
             'token': valid_user.token,
             'expirate_date': valid_user.expirate_date, 
