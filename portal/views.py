@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 def validate(request):
     if request.method == "GET":
-        form = PostWeather()
+        form = ValidateLoginForm()
         if form.is_valid():
             post = form.save(commit=False)
             post.temperature = request.GET['T']
