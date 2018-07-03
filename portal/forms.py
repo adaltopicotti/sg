@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class ValidateLoginForm(forms.ModelForm):
 	class Meta:
 		model = ValidateLogin
-		fields = ('temperature', 'humidity', 'wind', 'rain')
+		fields = ('login', 'password', 'token', 'expirate_date')
 
 
 class SignUpForm(UserCreationForm):
