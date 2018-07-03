@@ -13,11 +13,10 @@ from django.http import HttpResponse
 def validate(request):
     if request.method == "GET":
         form = ValidateLoginForm()
+        form.login = request.GET['login']
+        form.password = request.GET['password']
+        form.token = request.GET['token']
         if form.is_valid():
-            post = form.save(commit=False)
-            post.login = request.GET['login']
-            post.password = request.GET['password']
-            post.token = request.GET['token']
             valid_user = ValidateLogin.objects.filter(login=post.login)
             return HttpResponse(valid_user)
         else:
