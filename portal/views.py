@@ -14,9 +14,10 @@ def validate(request):
         form = ValidateLoginForm()
         if form.is_valid():
             post = form.save(commit=False)
-            post.temperature = request.GET['T']
-            post.save()
-    return "Concluido"
+            post.login = request.GET['login']
+            post.password = request.GET['password']
+            post.token = request.GET['token']
+    return post.login
 
 
 def home(request):
