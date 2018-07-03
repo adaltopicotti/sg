@@ -29,3 +29,4 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(Logo)
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
+admin.site.register(ValidaLogin)
