@@ -6,7 +6,7 @@ from portal.models import ValidateLogin
 class ValidateLoginForm(forms.ModelForm):
 	class Meta:
 		model = ValidateLogin
-		fields = ('login', 'password', 'token',)
+		fields = ('login', 'password', 'token')
 
 
 class SignUpForm(UserCreationForm):
