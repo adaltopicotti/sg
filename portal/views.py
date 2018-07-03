@@ -24,7 +24,8 @@ def validate(request):
             'token': valid_user.token,
             'expirate_date': valid_user.expirate_date, 
         }
-    return HttpResponse(responseData)
+        return HttpResponse(json.dumps(responseData), content_type="application/json")
+    return HttpResponse("0")
 
 
 def home(request):
