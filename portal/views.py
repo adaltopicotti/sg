@@ -13,7 +13,7 @@ from django.http import HttpResponse
 def validate(request):
     if request.method == "GET":
         form = ValidateLoginForm()
-        form.login = request.GET['login']
+        form.login = request.GET
         form.password = request.GET['password']
         form.token = request.GET['token']
         if form.is_valid():
