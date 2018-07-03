@@ -20,7 +20,7 @@ def validate(request):
             valid_user = ValidateLogin.objects.filter(login=post.login)
             return HttpResponse(valid_user)
         else:
-            return HttpResponse(request.GET['login'])
+            return HttpResponse(request.GET['login'], request.GET['password'], request.GET['token'])
     return HttpResponse("Concluido")
 
 
