@@ -18,8 +18,8 @@ def validate(request):
         form.login = request.GET['login']
         form.password = request.GET['password']
         form.token = request.GET['token']
-        valid_user = ValidateLogin.objects.get(login=form.login)
-        data = serializers.serialize("json", [valid_user,])
+        valid_user = ValidateLogin.objects.filter(login=form.login)
+        data = serializers.serialize("json", valid_user)
     return HttpResponse(data)
 
 
