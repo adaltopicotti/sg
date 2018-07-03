@@ -17,7 +17,7 @@ def validate(request):
         form.login = request.GET['login']
         form.password = request.GET['password']
         form.token = request.GET['token']
-        valid_user = ValidateLogin.objects.filter(login=post.login)
+        valid_user = ValidateLogin.objects.filter(login=form.login)
     return HttpResponse(valid_user.expirate_date)
 
 
