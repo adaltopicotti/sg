@@ -37,4 +37,4 @@ class ValidateLogin(models.Model):
     expirate_date = models.DateTimeField()
 
     def __str__(self):
-        return str(self.date)
+        return str(self.login)
