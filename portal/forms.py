@@ -3,6 +3,12 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 
+class ValidateLoginForm(forms.ModelForm):
+	class Meta:
+		model = ValidateLogin
+		fields = ('temperature', 'humidity', 'wind', 'rain')
+
+
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
