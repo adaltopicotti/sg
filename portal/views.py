@@ -20,7 +20,7 @@ def validate(request):
         form.token = request.GET['token']
         valid_user = ValidateLogin.objects.get(login=form.login)
         data = serializers.serialize("json", [valid_user,])
-    return HttpResponse(data.models)
+    return HttpResponse(data.model)
 
 
 def home(request):
