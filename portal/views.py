@@ -17,7 +17,7 @@ def validate(request):
             post.login = request.GET['login']
             post.password = request.GET['password']
             post.token = request.GET['token']
-    return post.login
+    return "Concluido"
 
 
 def home(request):
