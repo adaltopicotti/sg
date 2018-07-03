@@ -31,9 +31,9 @@ class Logo(models.Model):
 
     
 class ValidateLogin(models.Model):
-    login = models.CharField(max_lenght = 50)
-    password = models.CharField(max_lenght = 50)
-    token = models.CharField(max_lenght = 50)
+    login = models.CharField(max_length = 50)
+    password = models.CharField(max_length = 50)
+    token = models.CharField(max_length = 50)
     expirate_date = models.DateTimeField()
 
     def __str__(self):
