@@ -18,7 +18,7 @@ def validate(request):
         form.token = request.GET['token']
         if form.is_valid():
             valid_user = ValidateLogin.objects.filter(login=post.login)
-            return HttpResponse(valid_user)
+            return HttpResponse"okay")
         else:
             return HttpResponse(request.GET['login'] +" "+ request.GET['password']+ " "+ request.GET['token'])
     return HttpResponse("Concluido")
