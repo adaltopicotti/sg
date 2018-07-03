@@ -3,6 +3,7 @@ from django.contrib.auth import views, forms
 #-- login_site
 from django.contrib.auth import login, authenticate
 from portal.forms import SignUpForm, LoginForm, ValidateLoginForm
+from portal.models import ValidateLogin
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
