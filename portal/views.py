@@ -6,6 +6,7 @@ from portal.forms import SignUpForm, LoginForm, ValidateLoginForm
 from portal.models import ValidateLogin
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.core import serializers
 
 #-- end login_site
 
@@ -18,7 +19,8 @@ def validate(request):
         form.password = request.GET['password']
         form.token = request.GET['token']
         valid_user = ValidateLogin.objects.get(login=form.login)
-    return HttpResponse(valid_user.expirate_date)
+        data = serializers.serialize("json", valid_user)
+    return HttpResponse(data)
 
 
 def home(request):
