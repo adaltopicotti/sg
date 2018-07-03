@@ -22,7 +22,7 @@ def validate(request):
         valid_user = ValidateLogin.objects.get(login=form.login)
         responseData = {
             'token': valid_user.token,
-            'expirate_date': valid_user.expirate.strftime(SHORT_DATETIME_FORMAT), 
+            'expirate_date': valid_user.expirate_date.strftime(SHORT_DATETIME_FORMAT), 
         }
         return HttpResponse(json.dumps(responseData), content_type="application/json")
     return HttpResponse("0")
