@@ -4,6 +4,7 @@ from django.contrib.auth import views, forms
 from django.contrib.auth import login, authenticate
 from portal.forms import SignUpForm, LoginForm, ValidateLoginForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 #-- end login_site
 
