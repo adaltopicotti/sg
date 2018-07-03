@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import views, forms
+from datetime import datetime
+from django.utils import formats
 #-- login_site
 from django.contrib.auth import login, authenticate
 from portal.forms import SignUpForm, LoginForm, ValidateLoginForm
