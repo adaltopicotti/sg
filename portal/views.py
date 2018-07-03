@@ -9,6 +9,20 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+def validate(request):
+    if request.method == "GET":
+        form = PostWeather()
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.temperature = request.GET['T']
+            post.rain = request.GET['R']
+            post.humidity = request.GET['H']
+            post.wind = request.GET['W']
+            post.date = timezone.now()
+            post.save()
+    return "Concluido"
+
+
 def home(request):
     return render(request, 'portal/structure/home.html', {'form': LoginForm} )
 
