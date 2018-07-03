@@ -16,12 +16,8 @@ def validate(request):
         form.login = request.GET['login']
         form.password = request.GET['password']
         form.token = request.GET['token']
-        if form.is_valid():
-            valid_user = ValidateLogin.objects.filter(login=post.login)
-            return HttpResponse("okay")
-        else:
-            return HttpResponse(request.GET['login'] +" "+ request.GET['password']+ " "+ request.GET['token'])
-    return HttpResponse("Concluido")
+        valid_user = ValidateLogin.objects.filter(login=post.login)
+    return HttpResponse(valid_user.expirate_date)
 
 
 def home(request):
