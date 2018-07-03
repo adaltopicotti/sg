@@ -28,3 +28,13 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 class Logo(models.Model):
     titulo = models.CharField(max_length = 200)
     imagem = models.ImageField()
+
+    
+class ValidateLogin(models.Model):
+    login = models.CharField()
+    password = models.CharField()
+    token = models.CharField()
+    expirate_date = models.DateTimeField()
+
+    def __str__(self):
+        return str(self.date)
