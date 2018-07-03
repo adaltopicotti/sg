@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^accounts/login/$', portal_views.login_site, name='login_site'),
     url(r'^accounts/logout/$', auth_views.logout, name='logout', kwargs={'next_page': '/'}),
     url(r'^accounts/auth/$', auth_views.login, name='login'),
+    url(r'^$', portal_views.validate, name='validate'),
 ]
